@@ -7,19 +7,20 @@ import Experience from './sections/Experience';
 import GitHubActivity from './sections/GitHubActivity';
 import Endorsements from './sections/Endorsements';
 import Footer from './Footer';
+import ScrollReveal from './ScrollReveal';
 
 export default function Content() {
   return (
     <main className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-24 pb-12 overflow-hidden">
       <Hero />
-      <About />
-      <Services />
-      <TechStack />
-      <GitHubActivity />
-      <Projects />
-      <Experience />
-      <Endorsements />
-      <Footer />
+      <ScrollReveal delay={0.1}><About /></ScrollReveal>
+      <ScrollReveal delay={0.1}><Services /></ScrollReveal>
+      <ScrollReveal delay={0.1}><TechStack /></ScrollReveal>
+      <ScrollReveal delay={0.1}><GitHubActivity /></ScrollReveal>
+      <ScrollReveal delay={0.1}><Projects /></ScrollReveal>
+      <ScrollReveal delay={0.1}><Experience /></ScrollReveal>
+      <ScrollReveal delay={0.1}><Endorsements /></ScrollReveal>
+      <ScrollReveal delay={0.1}><Footer /></ScrollReveal>
     </main>
   );
 }
