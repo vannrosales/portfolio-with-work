@@ -1,4 +1,6 @@
+const fs = require('fs');
 
+const svgCode = `
 import { Layers, Server, Smartphone, Database, Code, GitBranch, Terminal } from 'lucide-react';
 
 const icons = {
@@ -44,52 +46,11 @@ const techCategories = [
     ]
   }
 ];
+`;
 
+let content = fs.readFileSync('src/components/sections/TechStack.jsx', 'utf8');
 
-export default function TechStack() {
-  return (
-    <section id="stack" className="mb-32 scroll-mt-32 relative z-10 w-full">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-12 gap-4">
-        <h2 className="text-sm font-bold uppercase tracking-widest opacity-50">
-          Core Stack & Tooling
-        </h2>
-        <span className="text-[10px] font-mono uppercase tracking-widest opacity-40">
-          Verified Technologies
-        </span>
-      </div>
-      
-      <div className="space-y-12">
-        {techCategories.map((category, idx) => (
-          <div key={idx} className="space-y-6">
-            <h3 className="text-xs font-black uppercase tracking-widest flex items-center gap-3">
-              {category.icon}
-            <h3 className="text-xs font-black uppercase tracking-widest">
-              {category.title}
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {category.items.map((item, i) => (
-                <div 
-                  key={i} 
-                  className="p-4 sm:p-5 flex items-center gap-4 rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] hover:bg-black/5 dark:hover:bg-white/5 hover:border-black/20 dark:hover:border-white/20 transition-all group cursor-default"
-                >
-                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--bg-color)] border border-black/10 dark:border-white/10 flex items-center justify-center font-black text-lg opacity-70 group-hover:opacity-100 group-hover:text-emerald-500 transition-all shadow-sm">
-                    {item.logo}
-                  </div>
-                  <div className="flex flex-col">
-                    <h4 className="font-bold text-sm sm:text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                      {item.name}
-                    </h4>
-                    <p className="text-[11px] sm:text-xs font-medium opacity-50 mt-0.5">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+// Replace everything from import { Layers... } up to export default function TechStack
+content = content.replace(/import \{ Layers.*\];/s, svgCode);
+
+fs.writeFileSync('src/components/sections/TechStack.jsx', content);
