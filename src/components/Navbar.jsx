@@ -3,7 +3,7 @@ import { Mail } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-[#121212]/80 border-b border-black/5 dark:border-white/5">
+    <nav className="sticky top-0 z-50 w-full backdrop-blur-md bg-[var(--bg-color)]/80 border-b border-black/5 dark:border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-24 h-20 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h1 className="text-xl font-bold tracking-tight">Vann</h1>
