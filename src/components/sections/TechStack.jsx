@@ -15,7 +15,6 @@ const icons = {
 const techCategories = [
   {
     title: "FRONTEND & UI",
-    icon: <Layers className="w-4 h-4 opacity-70" />,
     items: [
       { name: "Vue.js 3", desc: "Composition API, Pinia, SFCs", logo: icons.vue },
       { name: "React", desc: "Hooks, Vite, Component Architecture", logo: icons.react },
@@ -25,7 +24,6 @@ const techCategories = [
   },
   {
     title: "BACKEND & FRAMEWORKS",
-    icon: <Server className="w-4 h-4 opacity-70" />,
     items: [
       { name: "Laravel", desc: "Eloquent ORM, RESTful APIs, MVC", logo: icons.laravel },
       { name: "CodeIgniter", desc: "Lightweight PHP framework architecture", logo: <Code className="w-6 h-6 text-orange-500" /> },
@@ -35,7 +33,6 @@ const techCategories = [
   },
   {
     title: "MOBILE & DATABASES",
-    icon: <Smartphone className="w-4 h-4 opacity-70" />,
     items: [
       { name: "React Native & Expo", desc: "Cross-platform mobile apps", logo: icons.react },
       { name: "Supabase & PostgreSQL", desc: "Auth policies, real-time sync, SQL", logo: icons.supabase },
@@ -61,8 +58,6 @@ export default function TechStack() {
       <div className="space-y-12">
         {techCategories.map((category, idx) => (
           <div key={idx} className="space-y-6">
-            <h3 className="text-xs font-black uppercase tracking-widest flex items-center gap-3">
-              {category.icon}
             <h3 className="text-xs font-black uppercase tracking-widest">
               {category.title}
             </h3>
