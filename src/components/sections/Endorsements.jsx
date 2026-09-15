@@ -2,7 +2,7 @@ import { endorsements } from '../../data';
 
 export default function Endorsements() {
   return (
-    <section id="about" className="scroll-mt-32 mb-32 relative z-10 w-full">
+    <section id="endorsements" className="scroll-mt-32 mb-32 relative z-10 w-full">
       <h2 className="text-sm font-bold uppercase tracking-widest opacity-50 mb-12">
         Endorsements
       </h2>

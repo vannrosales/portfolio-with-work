@@ -21,13 +21,13 @@ export default function Hero() {
           Giovanni<br />Hanz Guino
         </h1>
         
-        <h2 className="text-lg sm:text-xl font-medium opacity-80 mb-8 max-w-md leading-relaxed">
-          (Vann Rosales) — I build scalable, minimalist, and unique digital experiences.
-        </h2>
-        
-        <p className="max-w-md text-sm sm:text-base opacity-60 leading-relaxed mb-10">
-          Whether you have a web platform to launch, a mobile MVP to build, or an existing system to revamp—I'm open to discussing opportunities and collaborations.
-        </p>
+        <div className="flex flex-wrap gap-2 mb-10 max-w-md">
+          {['Vue.js 3', 'React', 'Laravel', 'TypeScript', 'Tailwind CSS', 'React Native'].map(tech => (
+            <span key={tech} className="px-3 py-1.5 border border-black/10 dark:border-white/10 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest opacity-70 cursor-default hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+              {tech}
+            </span>
+          ))}
+        </div>
         
         <a 
           href="mailto:giovannihanzguino@gmail.com" 
