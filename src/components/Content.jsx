@@ -1,5 +1,6 @@
 import Hero from './sections/Hero';
 import About from './sections/About';
+import Hobbies from './sections/Hobbies';
 import Services from './sections/Services';
 import TechStack from './sections/TechStack';
 import Projects from './sections/Projects';
@@ -14,6 +15,7 @@ export default function Content() {
     <main className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-24 pb-12 overflow-hidden">
       <Hero />
       <ScrollReveal delay={0.1}><About /></ScrollReveal>
+      <ScrollReveal delay={0.1}><Hobbies /></ScrollReveal>
       <ScrollReveal delay={0.1}><Services /></ScrollReveal>
       <ScrollReveal delay={0.1}><TechStack /></ScrollReveal>
       <ScrollReveal delay={0.1}><GitHubActivity /></ScrollReveal>

@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import vannPic from '../../assets/vann-pic.jpg';
 import bodyPic from '../../assets/body-pic.jpg';
 import thirdPic from '../../assets/third-pic.png';
@@ -7,12 +6,6 @@ import thirdPic from '../../assets/third-pic.png';
 export default function Hero() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
     <section ref={ref} className="relative mb-32 pt-12 lg:pt-24 flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-0">
@@ -61,7 +54,7 @@ export default function Hero() {
       </div>
       
       {/* Image Content - Standing tall and bleeding slightly to the right */}
-      <motion.div style={{ y, opacity }} className="w-full lg:w-1/2 relative lg:-mr-12 xl:-mr-32 z-0">
+      <div className="w-full lg:w-1/2 relative lg:-mr-12 xl:-mr-32 z-0">
         {/* Subtle fade at the bottom for mobile so text isn't lost if stacked */}
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-transparent to-transparent z-10 lg:hidden rounded-3xl"></div>
         
@@ -98,7 +91,7 @@ export default function Hero() {
               <img src={bodyPic} alt="Giovanni Hanz Guino standing at night" className="w-full h-full object-cover filter contrast-[1.05] brightness-95" style={{ objectPosition: 'center 40%' }} />
             </div>
           </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
