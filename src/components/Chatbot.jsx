@@ -99,7 +99,7 @@ export default function Chatbot() {
     }
 
     // 6. Local Dialect Easter Eggs
-    else if (text.includes('bayot') || text.includes('bading')) {
+    else if (text.includes('bayot') || text.includes('bading') || text.includes('bakla') || text.includes('gay') || text.includes('biot')) {
       coreResponse = "bayot ka gjap 😂";
     }
     else if (text.includes('nayawa') || text.includes('yawa')) {
