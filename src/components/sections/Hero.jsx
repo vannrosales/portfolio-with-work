@@ -37,12 +37,27 @@ export default function Hero() {
           ))}
         </div>
         
-        <a 
-          href="mailto:giovannihanzguino@gmail.com" 
-          className="inline-flex items-center justify-center px-8 py-4 bg-black text-white dark:bg-white dark:text-black font-bold text-sm tracking-widest uppercase rounded-full hover:scale-105 transition-transform shadow-xl"
-        >
-          Let's Collaborate
-        </a>
+        <div className="flex flex-wrap items-center gap-4">
+          <a 
+            href="mailto:giovannihanzguino@gmail.com" 
+            className="inline-flex items-center justify-center px-8 py-4 bg-black text-white dark:bg-white dark:text-black font-bold text-sm tracking-widest uppercase rounded-full hover:scale-105 transition-transform shadow-xl"
+          >
+            Let's Collaborate
+          </a>
+          
+          <a 
+            href="/resume.pdf" 
+            download="Giovanni_Guino_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-8 py-4 border-2 border-black/20 dark:border-white/20 text-black dark:text-white font-bold text-sm tracking-widest uppercase rounded-full hover:border-black dark:hover:border-white hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105 transition-all shadow-sm"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download CV
+          </a>
+        </div>
       </div>
       
       {/* Image Content - Standing tall and bleeding slightly to the right */}
