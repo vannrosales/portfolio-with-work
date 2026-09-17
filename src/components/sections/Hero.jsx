@@ -56,7 +56,7 @@ export default function Hero() {
       {/* Image Content - Standing tall and bleeding slightly to the right */}
       <div className="w-full lg:w-1/2 relative lg:-mr-12 xl:-mr-32 z-0">
         {/* Subtle fade at the bottom for mobile so text isn't lost if stacked */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-transparent to-transparent z-10 lg:hidden rounded-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-transparent to-transparent z-10 lg:hidden rounded-3xl pointer-events-none"></div>
         
           <div 
             className="relative w-full h-[500px] lg:h-[750px] cursor-pointer group"
