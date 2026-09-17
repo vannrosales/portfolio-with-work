@@ -112,9 +112,8 @@ export default function Chatbot() {
       coreResponse = "bulok ka gjap 😂";
     }
     else if (text.includes('bai') || text.includes('bisakol') || text.includes('bisaya')) {
-      coreResponse = "ulol pagpag eater ka gjap 😂";
+      coreResponse = "ulol pagpag eater😂";
     }
-
 
     // 7. Identity / Greetings
     else if (text.includes('who are you') || text.includes('ai') || text.includes('bot')) {
