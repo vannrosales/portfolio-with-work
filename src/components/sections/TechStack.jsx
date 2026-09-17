@@ -9,6 +9,7 @@ const icons = {
   laravel: <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-red-500"><path d="M22.094 13.923l-8.625 4.887a2.531 2.531 0 01-2.441.002L2 14.136v-2.738l8.91 4.908c.361.199.789.2 1.15.002l8.847-5.011c.213-.121.344-.344.344-.59V6.368L12 1.161 2.75 6.368v3.42l-2 1.133V5.811A2.529 2.529 0 011.97 3.623L10.778.636a2.532 2.532 0 012.445 0l8.808 2.987a2.527 2.527 0 011.219 2.188v6.945c0 .927-.511 1.768-1.311 2.167h.155zM2.08 14.883v5.474a2.533 2.533 0 001.219 2.188l8.807 2.986a2.536 2.536 0 002.445 0l8.799-2.986a2.53 2.53 0 001.218-2.188v-3.791l-10.02 5.678-12.468-7.361zm20.897 4.09l-11.08 6.275L.897 19.349v-2.031l10.98 6.17 11.1-6.284v1.77z"/></svg>,
   git: <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-orange-500"><path d="M23.546 10.93L13.067.452a2.96 2.96 0 00-4.186 0L.452 8.88A2.96 2.96 0 00.45 13.07L10.93 23.548a2.962 2.962 0 004.186 0l8.43-8.432a2.962 2.962 0 000-4.186zM9.544 18.066a2.163 2.163 0 11.002-4.327 2.163 2.163 0 01-.002 4.327zm0-9.873a2.164 2.164 0 110-4.328 2.164 2.164 0 010 4.328zm5.795 4.326a2.164 2.164 0 110-4.328 2.164 2.164 0 010 4.328z"/></svg>,
   supabase: <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-emerald-400"><path d="M12.443 1.344a1.764 1.764 0 00-2.886 0L1.758 11.753a1.762 1.762 0 001.442 2.784h5.923v7.352a1.764 1.764 0 002.886 0l7.8-10.408a1.762 1.762 0 00-1.443-2.784h-5.923V1.344z"/></svg>,
+  nextjs: <svg viewBox="0 0 128 128" fill="currentColor" className="w-6 h-6 text-black dark:text-white"><path d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6h-6.8V41.8h6.8l50.5 75.8C116.4 106.2 128 86.5 128 64c0-35.3-28.7-64-64-64zm22.1 84.6l-7.4-11.2v-31.6h7.4v42.8z"/></svg>,
   generic: <Terminal className="w-6 h-6 opacity-70" />
 };
 
@@ -16,6 +17,7 @@ const techCategories = [
   {
     title: "FRONTEND & UI",
     items: [
+      { name: "Next.js", desc: "Server Components, App Router", logo: icons.nextjs },
       { name: "Vue.js 3", desc: "Composition API, Pinia, SFCs", logo: icons.vue },
       { name: "React", desc: "Hooks, Vite, Component Architecture", logo: icons.react },
       { name: "Tailwind CSS", desc: "Modern responsive utility-first UI", logo: icons.tailwind },
