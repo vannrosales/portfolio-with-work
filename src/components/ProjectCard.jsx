@@ -6,10 +6,10 @@ export default function ProjectCard({ title, description, tags, link, year, imag
       href={link} 
       target="_blank" 
       rel="noreferrer"
-      className="group block relative p-6 -mx-6 sm:mx-0 sm:p-8 rounded-3xl border border-transparent hover:border-black/10 dark:hover:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-all"
+      className="group block relative p-6 -mx-6 sm:mx-0 sm:p-8 rounded-3xl border border-transparent hover:border-black/20 dark:hover:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 transition-all"
     >
       {image && (
-        <div className="mb-6 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 aspect-video flex items-center justify-center">
+        <div className="mb-6 overflow-hidden rounded-xl border border-black/20 dark:border-white/10 bg-black/5 dark:bg-white/5 aspect-video flex items-center justify-center">
           <img 
             src={image} 
             alt={title} 
@@ -34,7 +34,7 @@ export default function ProjectCard({ title, description, tags, link, year, imag
         {tags.map((tag) => (
           <li 
             key={tag}
-            className="text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 opacity-70 group-hover:opacity-100 transition-opacity"
+            className="text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-black/20 dark:border-white/10 opacity-70 group-hover:opacity-100 transition-opacity"
           >
             {tag}
           </li>

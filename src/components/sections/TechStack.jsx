@@ -66,9 +66,9 @@ export default function TechStack() {
               {category.items.map((item, i) => (
                 <div 
                   key={i} 
-                  className="p-4 sm:p-5 flex items-center gap-4 rounded-2xl border border-black/10 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] hover:bg-black/5 dark:hover:bg-white/5 hover:border-black/20 dark:hover:border-white/20 transition-all group cursor-default"
+                  className="p-4 sm:p-5 flex items-center gap-4 rounded-2xl border border-black/20 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] hover:bg-black/5 dark:hover:bg-white/5 hover:border-black/30 dark:hover:border-white/20 transition-all group cursor-default"
                 >
-                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--bg-color)] border border-black/10 dark:border-white/10 flex items-center justify-center font-black text-lg opacity-70 group-hover:opacity-100 group-hover:text-emerald-500 transition-all shadow-sm">
+                  <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--bg-color)] border border-black/20 dark:border-white/10 flex items-center justify-center font-black text-lg opacity-70 group-hover:opacity-100 group-hover:text-emerald-500 transition-all shadow-sm">
                     {item.logo}
                   </div>
                   <div className="flex flex-col">

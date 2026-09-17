@@ -15,8 +15,8 @@ export const services = [
   },
   {
     title: 'Systems & Optimization',
-    description: 'Database modeling, Supabase setup, hardware workstation tuning, and local development infrastructure.',
-    tags: ['Database Modeling', 'Supabase', 'DevOps'],
+    description: 'Database modeling, Database setup, and local development infrastructure.',
+    tags: ['Database Modeling', 'Supabase', 'Database Optimization', 'MySQL' , 'PostgreSQL'],
     link: '#',
     year: 'Service'
   }

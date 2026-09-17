@@ -46,10 +46,10 @@ export default function Hobbies() {
       </h2>
       
       {/* Minimalist Monochrome Terminal */}
-      <div className="max-w-4xl rounded-xl overflow-hidden border border-black/10 dark:border-white/10 shadow-sm bg-zinc-50 dark:bg-zinc-900 font-mono text-sm sm:text-base">
+      <div className="w-full rounded-xl overflow-hidden border border-black/20 dark:border-white/10 shadow-sm bg-zinc-50 dark:bg-zinc-900 font-mono text-sm sm:text-base">
         
         {/* Header Bar */}
-        <div className="flex items-center px-4 py-3 bg-black/5 dark:bg-white/5 border-b border-black/10 dark:border-white/10">
+        <div className="flex items-center px-4 py-3 bg-black/5 dark:bg-white/5 border-b border-black/20 dark:border-white/10">
           <div className="flex gap-2">
             <div className="w-3 h-3 rounded-full bg-black/20 dark:bg-white/20"></div>
             <div className="w-3 h-3 rounded-full bg-black/20 dark:bg-white/20"></div>
@@ -64,8 +64,8 @@ export default function Hobbies() {
         <div className="p-6 overflow-x-auto">
           <div className="flex">
             {/* Line Numbers */}
-            <div className="flex flex-col text-right pr-4 text-black/30 dark:text-white/30 select-none border-r border-black/10 dark:border-white/10 mr-4">
-              {[...Array(9)].map((_, i) => (
+            <div className="flex flex-col text-right pr-4 text-black/30 dark:text-white/30 select-none border-r border-black/20 dark:border-white/10 mr-4">
+              {[...Array(15)].map((_, i) => (
                 <span key={i} className="leading-relaxed">{i + 1}</span>
               ))}
             </div>
