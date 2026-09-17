@@ -43,7 +43,7 @@ export default function Hero() {
             download="Giovanni_Guino_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 border-2 border-black/20 dark:border-white/20 text-black dark:text-white font-bold text-sm tracking-widest uppercase rounded-full hover:border-black dark:hover:border-white hover:bg-black/5 dark:hover:bg-white/5 hover:scale-105 transition-all shadow-sm"
+            className="inline-flex items-center justify-center px-6 py-3 border-2 border-black dark:border-white text-black dark:text-white font-bold text-sm tracking-widest uppercase rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-105 transition-all shadow-sm"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

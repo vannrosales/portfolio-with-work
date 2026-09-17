@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Override Tailwind v4 default media-query dark mode to use class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-bg-light: #F4F4F5;
   --color-text-light: #18181B;
