@@ -98,12 +98,30 @@ export default function Chatbot() {
       );
     }
 
-    // 6. Identity / Greetings
+    // 6. Local Dialect Easter Eggs
+    else if (text.includes('bayot') || text.includes('bading')) {
+      coreResponse = "bayot ka gjap 😂";
+    }
+    else if (text.includes('nayawa') || text.includes('yawa')) {
+      coreResponse = "yawaka gjap 😂";
+    }
+    else if (text.includes('potaka') || text.includes('pota')) {
+      coreResponse = "potaka gjap 😂";
+    }
+    else if (text.includes('bulok')){
+      coreResponse = "bulok ka gjap 😂";
+    }
+    else if (text.includes('bai') || text.includes('bisakol') || text.includes('bisaya')) {
+      coreResponse = "ulol pagpag eater ka gjap 😂";
+    }
+
+
+    // 7. Identity / Greetings
     else if (text.includes('who are you') || text.includes('ai') || text.includes('bot')) {
       coreResponse = "I am a custom AI assistant built directly into this portfolio! I have memorized Giovanni's entire resume, tech stack, and project history to help you learn more about him quickly.";
     }
     
-    // 7. Gibberish / Keyboard Smash Detection
+    // 8. Gibberish / Keyboard Smash Detection
     else if (!text.includes(' ') && text.length > 10) {
       coreResponse = "Did your cat walk over your keyboard? 😹 If you have a question about Giovanni's frontend or mobile development skills, just let me know!";
     }
