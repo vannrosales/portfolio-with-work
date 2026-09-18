@@ -1,41 +1,43 @@
-import { useState, useRef } from 'react';
-import vannPic from '../../assets/vann-pic.jpg';
-import bodyPic from '../../assets/body-pic.jpg';
-import thirdPic from '../../assets/third-pic.png';
+import { useRef } from 'react';
+import vannPic from '../../assets/grad-pic-no-bg.png';
 
 export default function Hero() {
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
   const ref = useRef(null);
 
   return (
-    <section ref={ref} className="relative mb-32 pt-12 lg:pt-24 flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-0">
+    <section ref={ref} className="relative w-full h-[90vh] min-h-[700px] mb-20 flex items-center overflow-hidden">
       
-      {/* Text Content */}
-      <div className="lg:w-1/2 z-10 relative">
-        <div className="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/10 backdrop-blur-md">
-          <span className="text-xs font-bold uppercase tracking-widest opacity-70">
-            Full-Stack Developer & Agentic Coding
+      {/* Background Subtle Gradient Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+
+      {/* Left Side: Massive Architectural Text */}
+      <div className="relative z-20 w-full lg:w-[60%] pl-6 md:pl-12 xl:pl-24 pt-20">
+        
+        {/* Terminal Status */}
+        <div className="inline-flex items-center gap-3 mb-8 px-4 py-2 border-l-2 border-emerald-500 bg-emerald-500/10 backdrop-blur-sm">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
+            System_Status: Online & Ready
           </span>
         </div>
         
-        <h1 className="text-6xl sm:text-7xl lg:text-[5.5rem] font-black tracking-tighter mb-8 leading-[1.1]">
-          Giovanni<br />Hanz Guino
+        {/* Giant Name */}
+        <h1 className="text-[5rem] md:text-[6rem] lg:text-[7rem] xl:text-[9rem] font-black tracking-tighter leading-[0.85] mb-6">
+          GIOVANNI<br/>HANZ<br/>GUINO<span className="text-emerald-500">.</span>
         </h1>
         
-        <div className="flex flex-wrap gap-2 mb-10 max-w-md">
-          {['Vue.js 3', 'React', 'Laravel', 'TypeScript', 'Tailwind CSS', 'React Native'].map(tech => (
-            <span key={tech} className="px-3 py-1.5 border border-black/10 dark:border-white/10 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-widest opacity-70 cursor-default hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
-              {tech}
-            </span>
-          ))}
-        </div>
+        {/* Bio / Description */}
+        <p className="max-w-xl text-base md:text-lg opacity-70 font-medium mb-10 leading-relaxed border-l-2 border-black/10 dark:border-white/10 pl-6">
+          Architecting scalable full-stack applications and engineering intelligent <strong className="text-emerald-600 dark:text-emerald-400">Agentic AI</strong> solutions. Currently shipping code at Nexxus Software Corporation.
+        </p>
         
-        <div className="flex flex-wrap items-center gap-4">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center gap-4 pl-6">
           <a 
             href="mailto:giovannihanzguino@gmail.com" 
-            className="inline-flex items-center justify-center px-8 py-4 bg-black text-white dark:bg-white dark:text-black font-bold text-sm tracking-widest uppercase rounded-full hover:scale-105 transition-transform shadow-xl"
+            className="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
           >
-            Let's Collaborate
+            Deploy Me
           </a>
           
           <a 
@@ -43,55 +45,43 @@ export default function Hero() {
             download="Giovanni_Guino_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3 border-2 border-black dark:border-white text-black dark:text-white font-bold text-sm tracking-widest uppercase rounded-full hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-105 transition-all shadow-sm"
+            className="inline-flex items-center justify-center px-6 py-4 border-2 border-black/20 dark:border-white/20 text-black dark:text-white font-bold text-sm tracking-widest uppercase hover:border-black dark:hover:border-white transition-all backdrop-blur-md"
           >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Download CV
+            Download.exe
           </a>
         </div>
       </div>
-      
-      {/* Image Content - Standing tall and bleeding slightly to the right */}
-      <div className="w-full lg:w-1/2 relative lg:-mr-12 xl:-mr-32 z-0">
-        {/* Subtle fade at the bottom for mobile so text isn't lost if stacked */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-transparent to-transparent z-10 lg:hidden rounded-3xl pointer-events-none"></div>
+
+      {/* Right Side: The Image & Floating Code */}
+      <div className="absolute right-0 bottom-0 w-full lg:w-[50%] h-[90%] z-10 flex justify-end items-end pointer-events-none opacity-30 lg:opacity-100">
         
-          <div 
-            className="relative w-full h-[500px] lg:h-[750px] cursor-pointer group"
-            style={{ perspective: '1200px' }}
-            onClick={() => setActiveCardIndex((prev) => (prev + 1) % 3)}
-            title="Click to cycle pictures!"
-          >
-            {/* Card 3 (thirdPic) */}
-            <div className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out shadow-2xl rounded-3xl lg:rounded-[3rem] overflow-hidden ${
-              activeCardIndex === 2 ? 'z-30 transform-none opacity-100' : 
-              activeCardIndex === 1 ? 'z-20 opacity-70 [transform:rotate(-4deg)_translate3d(1.5rem,1.5rem,-100px)] group-hover:[transform:rotate(-6deg)_translate3d(2.5rem,2.5rem,-100px)]' :
-              'z-10 opacity-40 [transform:rotate(4deg)_translate3d(-1.5rem,2rem,-200px)] group-hover:[transform:rotate(6deg)_translate3d(-2.5rem,3rem,-200px)]'
-            }`}>
-              <img src={thirdPic} alt="Giovanni Hanz Guino - Third Pic" className="w-full h-full object-cover filter contrast-[1.05] brightness-95" style={{ objectPosition: 'center 40%' }} />
-            </div>
-            
-            {/* Card 2 (vannPic) */}
-            <div className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out shadow-2xl rounded-3xl lg:rounded-[3rem] overflow-hidden ${
-              activeCardIndex === 1 ? 'z-30 transform-none opacity-100' : 
-              activeCardIndex === 0 ? 'z-20 opacity-70 [transform:rotate(-4deg)_translate3d(1.5rem,1.5rem,-100px)] group-hover:[transform:rotate(-6deg)_translate3d(2.5rem,2.5rem,-100px)]' :
-              'z-10 opacity-40 [transform:rotate(4deg)_translate3d(-1.5rem,2rem,-200px)] group-hover:[transform:rotate(6deg)_translate3d(-2.5rem,3rem,-200px)]'
-            }`}>
-              <img src={vannPic} alt="Giovanni Hanz Guino Graduation" className="w-full h-full object-cover filter contrast-[1.05] brightness-95" style={{ objectPosition: 'center 20%' }} />
-            </div>
-            
-            {/* Card 1 (bodyPic) */}
-            <div className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out shadow-2xl rounded-3xl lg:rounded-[3rem] overflow-hidden ${
-              activeCardIndex === 0 ? 'z-30 transform-none opacity-100' : 
-              activeCardIndex === 2 ? 'z-20 opacity-70 [transform:rotate(-4deg)_translate3d(1.5rem,1.5rem,-100px)] group-hover:[transform:rotate(-6deg)_translate3d(2.5rem,2.5rem,-100px)]' :
-              'z-10 opacity-40 [transform:rotate(4deg)_translate3d(-1.5rem,2rem,-200px)] group-hover:[transform:rotate(6deg)_translate3d(-2.5rem,3rem,-200px)]'
-            }`}>
-              <img src={bodyPic} alt="Giovanni Hanz Guino standing at night" className="w-full h-full object-cover filter contrast-[1.05] brightness-95" style={{ objectPosition: 'center 40%' }} />
-            </div>
+        {/* Floating Glassmorphism Code Block */}
+        <div className="absolute top-[10%] left-[10%] z-30 p-5 rounded-lg bg-white/20 dark:bg-black/40 backdrop-blur-xl border border-white/40 dark:border-white/10 shadow-2xl hidden lg:block rotate-[-4deg] hover:rotate-0 transition-transform duration-500 pointer-events-auto">
+          <div className="flex items-center gap-1.5 mb-3 border-b border-black/10 dark:border-white/10 pb-2">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+            <span className="ml-2 text-[9px] font-mono opacity-50">engineer.js</span>
           </div>
+          <pre className="text-xs font-mono opacity-90 text-left leading-loose">
+            <code className="text-purple-500 dark:text-purple-400">const</code> <code className="text-blue-600 dark:text-blue-400">developer</code> = {'{\n'}
+            {'  '}role: <code className="text-orange-500 dark:text-orange-300">'Full-Stack'</code>,{'\n'}
+            {'  '}specialty: <code className="text-orange-500 dark:text-orange-300">'Agentic AI'</code>,{'\n'}
+            {'  '}status: <code className="text-emerald-500 dark:text-emerald-400">true</code>{'\n'}
+            {'}'};
+          </pre>
+        </div>
+
+        {/* User Image anchored to bottom */}
+        <img 
+          src={vannPic} 
+          alt="Giovanni Hanz Guino" 
+          className="h-full w-auto object-contain object-bottom drop-shadow-2xl translate-x-12 xl:translate-x-0"
+        />
       </div>
+
     </section>
   );
 }
