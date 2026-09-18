@@ -8,6 +8,7 @@ import Projects from './sections/Projects';
 import Experience from './sections/Experience';
 import GitHubActivity from './sections/GitHubActivity';
 import Endorsements from './sections/Endorsements';
+import Contact from './sections/Contact';
 import Footer from './Footer';
 import ScrollReveal from './ScrollReveal';
 
@@ -25,6 +26,7 @@ export default function Content() {
         <ScrollReveal delay={0.1}><Projects /></ScrollReveal>
         <ScrollReveal delay={0.1}><Experience /></ScrollReveal>
         <ScrollReveal delay={0.1}><Endorsements /></ScrollReveal>
+        <ScrollReveal delay={0.1}><Contact /></ScrollReveal>
         <ScrollReveal delay={0.1}><Footer /></ScrollReveal>
       </main>
     </>
