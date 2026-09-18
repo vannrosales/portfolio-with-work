@@ -98,7 +98,7 @@ export default function Hero() {
 
         {/* Floating Glassmorphism Code Block */}
         <motion.div 
-          className="absolute top-[5%] lg:top-[10%] left-[-15%] xl:left-[-25%] z-30 p-5 rounded-lg bg-white/30 dark:bg-black/50 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.2)] hidden lg:block hover:rotate-0 transition-transform duration-500 pointer-events-auto"
+          className="absolute top-[5%] lg:top-[10%] left-4 xl:left-[-10%] z-30 p-5 rounded-lg bg-white/30 dark:bg-black/50 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.2)] hidden lg:block hover:rotate-0 transition-transform duration-500 pointer-events-auto"
           variants={floatVariants}
           initial="hidden"
           animate="visible"
