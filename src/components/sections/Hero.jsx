@@ -54,7 +54,7 @@ export default function Hero() {
         
         {/* Bio / Description */}
         <motion.p variants={itemVariants} className="max-w-xl text-base md:text-lg opacity-70 font-medium mb-8 md:mb-10 leading-relaxed border-l-2 border-black/10 dark:border-white/10 pl-6">
-          Architecting scalable full-stack applications and engineering intelligent <strong className="text-emerald-600 dark:text-emerald-400">Agentic AI</strong> solutions.
+          <strong className="text-emerald-600 dark:text-emerald-400">Full Stack Software Developer</strong> building scalable applications powered by Generative AI and autonomous agentic skills.
         </motion.p>
         
         {/* Action Buttons */}
@@ -112,7 +112,7 @@ export default function Hero() {
           <pre className="text-xs font-mono opacity-100 text-left leading-loose">
             <code className="text-purple-600 dark:text-purple-400 font-bold">const</code> <code className="text-blue-600 dark:text-blue-400 font-bold">developer</code> = {'{\n'}
             {'  '}role: <code className="text-orange-600 dark:text-orange-300">"Full-Stack"</code>,{'\n'}
-            {'  '}specialty: <code className="text-orange-600 dark:text-orange-300">"Agentic AI"</code>,{'\n'}
+            {'  '}specialty: <code className="text-orange-600 dark:text-orange-300">"Agentic Skills"</code>,{'\n'}
             {'  '}status: <code className="text-emerald-600 dark:text-emerald-400 font-bold">true</code>{'\n'}
             {'}'};
           </pre>
