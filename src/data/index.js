@@ -24,22 +24,6 @@ export const services = [
 
 export const projects = [
   {
-    title: 'VFluxify',
-    description: 'Music streaming refined. Experience lossless audio playback, live synchronized lyrics, acoustic soundstage controls, and personalized cloud playlists in a clean obsidian interface.',
-    tags: ['Web App', 'Tailwind CSS', 'Full-Stack'],
-    link: 'https://v-fluxify.vercel.app/',
-    year: 'Frontend Developer',
-    image: '/projects/v-fluxify.png'
-  },
-  {
-    title: 'Waray Flix',
-    description: 'A minimalist streaming web application with TMDB catalog integration, custom local storage watch tracking, and a distraction-free aesthetic.',
-    tags: ['React 19', 'Tailwind CSS'],
-    link: 'https://waray-flix.vercel.app/',
-    year: 'Lead Frontend Architect',
-    image: '/projects/waray-flix.png'
-  },
-  {
     title: 'JK Boutique',
     description: 'Commerce platform connecting digital apparel drops with in-store physical holds. Features dual-role authentication and real-time inventory tracking.',
     tags: ['Next.js', 'Server Actions', 'Tailwind CSS'],
