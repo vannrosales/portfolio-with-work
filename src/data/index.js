@@ -106,18 +106,18 @@ export const projects = [
 ];
 
 export const experiences = [
-  {
-    company: 'Nexxus Software Corporation',
-    role: 'Full-Stack Developer / Software Developer',
-    date: 'SEPT 2026 — PRESENT',
-    type: 'Project-Based • Remote / Hybrid',
-    initials: 'NSC',
-    descriptions: [
-      'Architecting, developing, and deploying scalable web applications from the ground up utilizing ReactJS, Vue.js, Laravel, and modern database technologies.',
-      'Experienced in building full-stack solutions, configuring robust backend APIs, managing database migrations, implementing secure authentication policies, and streamlining development workflows with modern tooling.'
-    ],
-    tags: ['Laravel', 'Vue.js 3', 'ReactJS', 'React Native', 'Supabase', 'Tailwind CSS', 'TypeScript', 'MySQL', 'PostgreSQL', 'RESTful APIs', 'Git', 'CI/CD', 'Inertia.js', 'Vite', 'DigitalOcean']
-  },
+  // {
+  //   company: 'Nexxus Software Corporation',
+  //   role: 'Full-Stack Developer / Software Developer',
+  //   date: 'SEPT 2026 — PRESENT',
+  //   type: 'Project-Based • Remote / Hybrid',
+  //   initials: 'NSC',
+  //   descriptions: [
+  //     'Architecting, developing, and deploying scalable web applications from the ground up utilizing ReactJS, Vue.js, Laravel, and modern database technologies.',
+  //     'Experienced in building full-stack solutions, configuring robust backend APIs, managing database migrations, implementing secure authentication policies, and streamlining development workflows with modern tooling.'
+  //   ],
+  //   tags: ['Laravel', 'Vue.js 3', 'ReactJS', 'React Native', 'Supabase', 'Tailwind CSS', 'TypeScript', 'MySQL', 'PostgreSQL', 'RESTful APIs', 'Git', 'CI/CD', 'Inertia.js', 'Vite', 'DigitalOcean']
+  // },
   {
     company: 'Independent / Freelance',
     role: 'Full-Stack Developer & IT Specialist',
