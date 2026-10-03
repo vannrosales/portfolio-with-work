@@ -24,6 +24,14 @@ export const services = [
 
 export const projects = [
   {
+    title: 'Shutterbox - Photobooth Financial Tracker & Queue Management System.',
+    description: 'Features offline application , live queue calling + kiosk display, multi-location financial tracking, and bookings.',
+    tags: ['Rust(Tauri)', 'React Typescript', 'Tailwind CSS', 'SQLite'],
+    link: '#',
+    year: 'Full-Stack Developer',
+    image: '/projects/shutterbox.png'
+  },
+  {
     title: 'JK Boutique',
     description: 'Commerce platform connecting digital apparel drops with in-store physical holds. Features dual-role authentication and real-time inventory tracking.',
     tags: ['Next.js', 'Server Actions', 'Tailwind CSS'],

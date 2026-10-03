@@ -1,6 +1,37 @@
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { motion, useInView, animate } from 'framer-motion';
 import vannPic from '../../assets/grad-pic-no-bg.png';
+import { projects, endorsements } from '../../data';
+
+function CountUp({ from = 0, to, duration = 1.8, delay = 0.7, suffix = '+' }) {
+  const [count, setCount] = useState(from);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    let controls;
+    const timer = setTimeout(() => {
+      controls = animate(from, to, {
+        duration,
+        ease: [0.16, 1, 0.3, 1],
+        onUpdate(value) {
+          setCount(Math.floor(value));
+        },
+      });
+    }, delay * 1000);
+
+    return () => {
+      clearTimeout(timer);
+      if (controls) controls.stop();
+    };
+  }, [from, to, duration, delay]);
+
+  return (
+    <span ref={ref} className="inline-flex items-baseline">
+      <span>{count}</span>
+      {suffix && <span className="text-emerald-500">{suffix}</span>}
+    </span>
+  );
+}
 
 export default function Hero() {
   const ref = useRef(null);
@@ -78,6 +109,55 @@ export default function Hero() {
             </svg>
             Download Resume
           </a>
+        </motion.div>
+
+        {/* Minimalist Architectural Stats Bar matching reference image */}
+        <motion.div 
+          variants={itemVariants}
+          className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-black/10 dark:border-white/10 max-w-xl pl-6"
+        >
+          <div className="grid grid-cols-3 divide-x divide-black/10 dark:divide-white/10 text-center">
+            
+            {/* Stat 1: Years Experience */}
+            <a 
+              href="#experience" 
+              className="group px-2 sm:px-4 py-2 flex flex-col items-center justify-center transition-transform hover:scale-105"
+            >
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white group-hover:text-emerald-500 transition-colors">
+                <CountUp to={4} suffix="+" duration={1.5} />
+              </div>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] opacity-50 group-hover:opacity-100 transition-opacity mt-2">
+                Years Experience
+              </span>
+            </a>
+
+            {/* Stat 2: Projects Delivered */}
+            <a 
+              href="#projects" 
+              className="group px-2 sm:px-4 py-2 flex flex-col items-center justify-center transition-transform hover:scale-105"
+            >
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white group-hover:text-emerald-500 transition-colors">
+                <CountUp to={projects.length || 9} suffix="+" duration={1.8} />
+              </div>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] opacity-50 group-hover:opacity-100 transition-opacity mt-2">
+                Projects
+              </span>
+            </a>
+
+            {/* Stat 3: Recommendations */}
+            <a 
+              href="#endorsements" 
+              className="group px-2 sm:px-4 py-2 flex flex-col items-center justify-center transition-transform hover:scale-105"
+            >
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white group-hover:text-emerald-500 transition-colors">
+                <CountUp to={endorsements.length || 3} suffix="+" duration={1.4} />
+              </div>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] opacity-50 group-hover:opacity-100 transition-opacity mt-2">
+                Recommendations
+              </span>
+            </a>
+
+          </div>
         </motion.div>
       </motion.div>
 
