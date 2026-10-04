@@ -6,7 +6,7 @@ export default function GitHubActivity() {
       </h2>
       <div className="p-8 lg:p-12 border border-black/20 dark:border-white/10 rounded-3xl bg-black/5 dark:bg-white/5 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12 group hover:border-black/30 dark:hover:border-white/20 transition-all">
         <div className="flex-1 space-y-4">
-          <h3 className="text-4xl md:text-5xl font-black tracking-tighter">400+</h3>
+          <h3 className="text-4xl md:text-5xl font-black tracking-tighter">500+</h3>
           <h4 className="text-xl font-bold opacity-80">GitHub Contributions</h4>
           <p className="opacity-60 leading-relaxed max-w-md pt-2 text-sm sm:text-base">
             Passionate about open-source, continuous learning, and building in public. From experimental personal projects and UI components to full-scale web applications.
