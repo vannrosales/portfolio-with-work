@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import pixelPic from '../../assets/avatar.png';
+import pixelPicBlink from '../../assets/avatar-blink.png';
 
 const words = ['quiet.', 'reliable.', 'human.', 'timeless.'];
 const ease = [0.16, 1, 0.3, 1];
@@ -17,6 +18,86 @@ function Line({ children, delay }) {
         {children}
       </motion.span>
     </span>
+  );
+}
+
+/** Living pixel-art portrait pill that blinks naturally (with occasional double-blinks) and responds on hover/click. */
+function PixelAvatar() {
+  const [isBlinking, setIsBlinking] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    const timers = [];
+
+    const triggerBlink = (double = false) => {
+      setIsBlinking(true);
+      const t1 = setTimeout(() => {
+        setIsBlinking(false);
+        if (double) {
+          const t2 = setTimeout(() => {
+            setIsBlinking(true);
+            const t3 = setTimeout(() => setIsBlinking(false), 130);
+            timers.push(t3);
+          }, 110);
+          timers.push(t2);
+        }
+      }, 140);
+      timers.push(t1);
+    };
+
+    const scheduleNext = () => {
+      const nextDelay = 2400 + Math.random() * 2600;
+      timeoutId = setTimeout(() => {
+        triggerBlink(Math.random() < 0.28);
+        scheduleNext();
+      }, nextDelay);
+    };
+
+    scheduleNext();
+    return () => {
+      clearTimeout(timeoutId);
+      timers.forEach(clearTimeout);
+    };
+  }, []);
+
+  const manualBlink = () => {
+    setIsBlinking(true);
+    setTimeout(() => setIsBlinking(false), 160);
+  };
+
+  return (
+    <motion.span
+      initial={{ scale: 0.6, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.45, ease }}
+      whileHover={{ scale: 1.08, rotate: -3 }}
+      whileTap={{ scale: 0.95 }}
+      onMouseEnter={manualBlink}
+      onClick={manualBlink}
+      className="group relative inline-block align-middle h-[0.78em] w-[1.12em] -mt-[0.10em] rounded-full overflow-hidden bg-line cursor-pointer shrink-0 select-none"
+    >
+      <motion.span
+        animate={{ y: ['0%', '-2.2%', '0%'] }}
+        transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute inset-0 block"
+      >
+        <img
+          src={pixelPic}
+          alt="Giovanni Hanz Guino"
+          style={{ imageRendering: 'pixelated' }}
+          className="absolute inset-0 h-full w-full object-cover object-[50%_20%] scale-125 transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.45]"
+        />
+        <img
+          src={pixelPicBlink}
+          alt=""
+          aria-hidden="true"
+          style={{ imageRendering: 'pixelated' }}
+          className={`absolute inset-0 h-full w-full object-cover object-[50%_20%] scale-125 transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.45] ${
+            isBlinking ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      </motion.span>
+    </motion.span>
   );
 }
 
@@ -54,22 +135,7 @@ export default function Hero() {
       <div className="flex-1 flex flex-col justify-center py-8 sm:py-14">
         <h1 className="font-serif text-[clamp(3.15rem,13vw,9.5rem)] leading-[0.94] tracking-[-0.035em] break-words">
           <Line delay={0.15}>
-            Giovanni{' '}
-            {/* Avatar set inline with the type, like a word in the sentence */}
-            <motion.span
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.45, ease }}
-              whileHover={{ scale: 1.08, rotate: -3 }}
-              className="group relative inline-block align-middle h-[0.78em] w-[1.12em] -mt-[0.10em] rounded-full overflow-hidden bg-line cursor-pointer shrink-0"
-            >
-              <img
-                src={pixelPic}
-                alt="Giovanni Hanz Guino"
-                className="absolute inset-0 h-full w-full object-cover object-[50%_20%] scale-125 transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.45]"
-              />
-            </motion.span>{' '}
-            <em>builds</em>
+            Giovanni <PixelAvatar /> <em>builds</em>
           </Line>
           <Line delay={0.27}>considered software</Line>
           <Line delay={0.39}>
