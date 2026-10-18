@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LogoMark } from './Logo';
 import SnakeGame from './SnakeGame';
+import DevStationBadge from './DevStationBadge';
 
 export default function Footer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -14,7 +15,8 @@ export default function Footer() {
             vnn<span className="font-sans not-italic text-base text-muted">.dev</span>
           </p>
         </div>
-        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          <DevStationBadge />
           <button onClick={() => setIsPlaying(true)} className="link font-serif italic text-base">
             Bored? Play snake
           </button>

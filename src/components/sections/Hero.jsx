@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import pixelPic from '../../assets/avatar.png';
 import pixelPicBlink from '../../assets/avatar-blink.png';
+import DevStationBadge from '../DevStationBadge';
 
 const words = ['quiet.', 'reliable.', 'human.', 'timeless.'];
 const ease = [0.16, 1, 0.3, 1];
@@ -197,8 +198,10 @@ export default function Hero() {
               hidden: { opacity: 0, y: 14 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
             }}
-            className="flex items-end gap-8"
+            className="flex flex-wrap sm:flex-nowrap items-end gap-6 sm:gap-8"
           >
+            <DevStationBadge className="shrink-0 mb-1" />
+
             <div className="flex flex-col gap-1.5">
               <a href="#work" className="link font-serif italic text-xl leading-none self-start">See the work</a>
               <a href="/resume.pdf" download="Giovanni_Guino_Resume.pdf" className="link text-muted self-start">Résumé ↓</a>
