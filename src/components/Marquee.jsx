@@ -31,11 +31,11 @@ export default function Marquee() {
     <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {items.map(({ name, Icon }) => (
         <li key={`${keyPrefix}-${name}`} className="flex items-center">
-          <div className="group flex items-center gap-3.5 px-6 sm:px-10 transition-opacity duration-300 hover:opacity-60">
-            <span className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 text-fg opacity-85 group-hover:opacity-100 transition-transform duration-300 group-hover:scale-110">
+          <div className="group flex items-baseline gap-3 px-6 sm:px-10 transition-opacity duration-300 hover:opacity-60">
+            <span className="inline-flex self-center items-center justify-center w-[0.82em] h-[0.82em] text-fg opacity-90 transition-transform duration-300 group-hover:scale-110 shrink-0">
               <Icon className="w-full h-full" />
             </span>
-            <span className="font-serif text-3xl sm:text-5xl whitespace-nowrap text-fg">
+            <span className="font-serif text-3xl sm:text-5xl whitespace-nowrap text-fg leading-none tracking-tight">
               {name}
             </span>
           </div>
