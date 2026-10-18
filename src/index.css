@@ -4,41 +4,113 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-bg-light: #F4F4F5;
-  --color-text-light: #18181B;
-  --color-bg-dark: #18181B;
-  --color-text-dark: #F4F4F5;
-  
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
 }
 
 @layer base {
   :root {
-    --bg-color: var(--color-bg-light);
-    --text-color: var(--color-text-light);
+    --bg: #f3f1ec;
+    --fg: #141414;
+    --muted: #77736b;
+    --line: #dcd8cf;
   }
 
   .dark {
-    --bg-color: var(--color-bg-dark);
-    --text-color: var(--color-text-dark);
+    --bg: #0f0f0e;
+    --fg: #ecebe6;
+    --muted: #85827a;
+    --line: #262624;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--bg);
+    color: var(--fg);
     font-family: var(--font-sans);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: clip;
   }
 
-  h1, h2, h3, h4, h5, h6, .font-display {
-    font-family: var(--font-display);
-  }
-
-  code, pre, kbd, samp, .font-mono {
-    font-family: var(--font-mono);
+  em {
+    font-style: italic;
   }
 }
 
-/* Texture overlay removed per user request */
+/* Headline lines sliding up from behind a mask */
+@keyframes rise {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+.rise {
+  animation: rise 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.fade {
+  animation: fade 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Underline that draws in on hover */
+.link {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1px;
+  transition: background-size 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.link:hover {
+  background-size: 100% 1px;
+}
+
+/* Infinite stack strip */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 24s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Hero scroll cue — a short bar travelling down a hairline */
+@keyframes scroll-cue {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(200%); }
+}
+.scroll-cue {
+  animation: scroll-cue 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* vnn.dev logo — single stroke draws itself, then the dot lands */
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes pop {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+.logo-draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+.logo-draw .logo-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pop 0.45s 1.25s cubic-bezier(0.2, 0.7, 0.2, 1.4) forwards;
+}

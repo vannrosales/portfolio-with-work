@@ -1,10 +1,32 @@
+import { useState } from 'react';
+import { LogoMark } from './Logo';
+import SnakeGame from './SnakeGame';
+
 export default function Footer() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
-    <footer className="pt-8 pb-12 border-t border-black/10 dark:border-white/10 opacity-40 text-sm flex flex-col sm:flex-row justify-between items-start sm:items-center relative z-10">
-      <p className="mt-4 sm:mt-0 font-mono">
-        © {new Date().getFullYear()} Giovanni Hanz Guino
-      </p>
+    <footer className="pt-10 pb-12 border-t border-line">
+      <div className="flex flex-col sm:flex-row gap-8 sm:items-end justify-between">
+        <div className="flex items-end gap-4">
+          <LogoMark draw={false} className="h-12 w-auto" />
+          <p className="font-serif italic text-4xl leading-none">
+            vnn<span className="font-sans not-italic text-base text-muted">.dev</span>
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <button onClick={() => setIsPlaying(true)} className="link font-serif italic text-base">
+            Bored? Play snake
+          </button>
+          <a href="#" className="link">Back to top ↑</a>
+        </div>
+      </div>
+      <div className="mt-8 flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">
+        <span>© {new Date().getFullYear()} Giovanni Hanz Guino</span>
+        <span>Designed &amp; built with care in the Philippines.</span>
+      </div>
+
+      {isPlaying && <SnakeGame onClose={() => setIsPlaying(false)} />}
     </footer>
   );
 }
-

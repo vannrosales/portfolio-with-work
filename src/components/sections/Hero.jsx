@@ -1,206 +1,152 @@
-import { useRef, useEffect, useState } from 'react';
-import { motion, useInView, animate } from 'framer-motion';
-import vannPic from '../../assets/grad-pic-no-bg.png';
-import { projects, endorsements } from '../../data';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import pixelPic from '../../assets/avatar.png';
 
-function CountUp({ from = 0, to, duration = 1.8, delay = 0.7, suffix = '+' }) {
-  const [count, setCount] = useState(from);
-  const ref = useRef(null);
+const words = ['quiet.', 'reliable.', 'human.', 'timeless.'];
+const ease = [0.16, 1, 0.3, 1];
 
+function Line({ children, delay }) {
+  return (
+    <span className="block overflow-hidden pb-[0.08em]">
+      <motion.span
+        initial={{ y: '110%' }}
+        animate={{ y: '0%' }}
+        transition={{ duration: 1.1, delay, ease }}
+        className="block"
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
+/** Italic word that swaps every few seconds with a smooth Framer Motion slide + blur. */
+function RotatingWord() {
+  const [i, setI] = useState(0);
   useEffect(() => {
-    let controls;
-    const timer = setTimeout(() => {
-      controls = animate(from, to, {
-        duration,
-        ease: [0.16, 1, 0.3, 1],
-        onUpdate(value) {
-          setCount(Math.floor(value));
-        },
-      });
-    }, delay * 1000);
-
-    return () => {
-      clearTimeout(timer);
-      if (controls) controls.stop();
-    };
-  }, [from, to, duration, delay]);
+    const id = setInterval(() => setI((n) => (n + 1) % words.length), 2800);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <span ref={ref} className="inline-flex items-baseline">
-      <span>{count}</span>
-      {suffix && <span className="text-emerald-500">{suffix}</span>}
+    <span className="inline-grid overflow-hidden align-bottom pb-[0.06em]" aria-live="polite">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.em
+          key={words[i]}
+          initial={{ y: '100%', opacity: 0, filter: 'blur(4px)' }}
+          animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
+          exit={{ y: '-95%', opacity: 0, filter: 'blur(4px)' }}
+          transition={{ duration: 0.55, ease }}
+          className="inline-block"
+        >
+          {words[i]}
+        </motion.em>
+      </AnimatePresence>
     </span>
   );
 }
 
 export default function Hero() {
-  const ref = useRef(null);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-  };
-
-  const rightSideVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 } },
-  };
-
-  const floatVariants = {
-    hidden: { opacity: 0, scale: 0.8, rotate: 0 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      rotate: -4, 
-      transition: { duration: 0.8, ease: "easeOut", delay: 0.8 } 
-    },
-  };
-
   return (
-    <section ref={ref} className="relative w-full min-h-screen mb-20 flex flex-col lg:flex-row items-center justify-center lg:justify-between overflow-hidden pt-12 lg:pt-0">
+    <section className="relative min-h-[100svh] flex flex-col pt-24 sm:pt-28 pb-10">
 
-      {/* Left Side: Massive Architectural Text */}
-      <motion.div 
-        className="relative z-20 w-full lg:w-[55%] px-6 md:px-12 lg:pr-0 lg:pl-12 xl:pl-24 mt-0 md:mt-10 lg:-mt-12 order-1"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        
-        {/* Giant Name */}
-        <motion.h1 variants={itemVariants} className="text-[3.5rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7rem] xl:text-[8rem] font-black tracking-tighter leading-[0.85] mb-4 md:mb-6">
-          GIOVANNI<br/>HANZ<br/>GUINO<span className="text-emerald-500">.</span>
-        </motion.h1>
-        
-        {/* Bio / Description */}
-        <motion.p variants={itemVariants} className="max-w-xl text-base md:text-lg opacity-70 font-medium mb-8 md:mb-10 leading-relaxed border-l-2 border-black/10 dark:border-white/10 pl-6">
-          <strong className="text-emerald-600 dark:text-emerald-400">Full Stack Software Developer</strong> building scalable applications powered by Generative AI and autonomous agentic skills.
-        </motion.p>
-        
-        {/* Action Buttons */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pl-6">
-          <a 
-            href="mailto:giovannihanzguino@gmail.com" 
-            className="inline-flex w-full sm:w-auto items-center justify-center px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
-          >
-            Deploy Me
-          </a>
-          
-          <a 
-            href="/resume.pdf" 
-            download="Giovanni_Guino_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-full sm:w-auto items-center justify-center px-6 py-4 border-2 border-black/20 dark:border-white/20 text-black dark:text-white font-bold text-sm tracking-widest uppercase hover:border-black dark:hover:border-white transition-all backdrop-blur-md"
-          >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            Download Resume
-          </a>
-        </motion.div>
-
-        {/* Minimalist Architectural Stats Bar matching reference image */}
-        <motion.div 
-          variants={itemVariants}
-          className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-black/10 dark:border-white/10 max-w-xl pl-6"
-        >
-          <div className="grid grid-cols-3 divide-x divide-black/10 dark:divide-white/10 text-center">
-            
-            {/* Stat 1: Years Experience */}
-            <a 
-              href="#experience" 
-              className="group px-2 sm:px-4 py-2 flex flex-col items-center justify-center transition-transform hover:scale-105"
+      {/* Headline */}
+      <div className="flex-1 flex flex-col justify-center py-14">
+        <h1 className="font-serif text-[10.5vw] sm:text-[9.5vw] xl:text-[8.25rem] leading-[0.95] tracking-[-0.03em]">
+          <Line delay={0.15}>
+            Giovanni{' '}
+            {/* Avatar set inline with the type, like a word in the sentence */}
+            <motion.span
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.45, ease }}
+              whileHover={{ scale: 1.08, rotate: -3 }}
+              className="group relative inline-block align-middle h-[0.80em] w-[1.10em] -mt-[0.12em] rounded-full overflow-hidden bg-line cursor-pointer"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white group-hover:text-emerald-500 transition-colors">
-                <CountUp to={4} suffix="+" duration={1.5} />
-              </div>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] opacity-50 group-hover:opacity-100 transition-opacity mt-2">
-                Years Experience
-              </span>
-            </a>
+              <img
+                src={pixelPic}
+                alt="Giovanni Hanz Guino"
+                className="absolute inset-0 h-full w-full object-cover object-[50%_20%] scale-125 transition-transform duration-700 ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.45]"
+              />
+            </motion.span>{' '}
+            <em>builds</em>
+          </Line>
+          <Line delay={0.27}>considered software</Line>
+          <Line delay={0.39}>
+            <span className="text-muted">that feels</span> <RotatingWord />
+          </Line>
+        </h1>
+      </div>
 
-            {/* Stat 2: Projects Delivered */}
-            <a 
-              href="#projects" 
-              className="group px-2 sm:px-4 py-2 flex flex-col items-center justify-center transition-transform hover:scale-105"
-            >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white group-hover:text-emerald-500 transition-colors">
-                <CountUp to={projects.length || 9} suffix="+" duration={1.8} />
-              </div>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] opacity-50 group-hover:opacity-100 transition-opacity mt-2">
-                Projects
-              </span>
-            </a>
-
-            {/* Stat 3: Recommendations */}
-            <a 
-              href="#endorsements" 
-              className="group px-2 sm:px-4 py-2 flex flex-col items-center justify-center transition-transform hover:scale-105"
-            >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black dark:text-white group-hover:text-emerald-500 transition-colors">
-                <CountUp to={endorsements.length || 3} suffix="+" duration={1.4} />
-              </div>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.18em] opacity-50 group-hover:opacity-100 transition-opacity mt-2">
-                Recommendations
-              </span>
-            </a>
-
-          </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Right Side: The Image & Floating Code */}
-      <motion.div 
-        className="relative lg:absolute mt-12 lg:mt-0 right-0 lg:-right-12 bottom-0 w-full lg:w-[50%] xl:w-[45%] h-[50vh] lg:h-full z-10 flex justify-center lg:justify-end items-end pointer-events-none opacity-100 order-2 lg:order-none"
-        variants={rightSideVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        
-        {/* User Image anchored to bottom right */}
-        <img 
-          src={vannPic} 
-          alt="Giovanni Hanz Guino" 
-          className="h-full w-full object-contain object-bottom lg:object-right-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+      {/* Footer row of the cover */}
+      <div className="relative pt-6 text-sm">
+        <motion.span
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.1, delay: 0.65, ease }}
+          className="absolute inset-x-0 top-0 h-px bg-line origin-left"
+          aria-hidden="true"
         />
 
-        {/* Floating Glassmorphism Code Block */}
-        <motion.div 
-          className="absolute top-[5%] lg:top-[10%] left-4 xl:left-[-10%] z-30 p-5 rounded-lg bg-white/30 dark:bg-black/50 backdrop-blur-2xl border border-white/40 dark:border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.2)] hidden lg:block hover:rotate-0 transition-transform duration-500 pointer-events-auto"
-          variants={floatVariants}
+        <motion.div
           initial="hidden"
           animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.12, delayChildren: 0.75 } },
+          }}
+          className="grid gap-8 sm:grid-cols-[1.2fr_1fr_auto] items-end"
         >
-          <div className="flex items-center gap-1.5 mb-3 border-b border-black/10 dark:border-white/10 pb-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
-            <span className="ml-2 text-[9px] font-mono opacity-50">engineer.js</span>
-          </div>
-          <pre className="text-xs font-mono opacity-100 text-left leading-loose">
-            <code className="text-purple-600 dark:text-purple-400 font-bold">const</code> <code className="text-blue-600 dark:text-blue-400 font-bold">developer</code> = {'{\n'}
-            {'  '}role: <code className="text-orange-600 dark:text-orange-300">"Full-Stack"</code>,{'\n'}
-            {'  '}specialty: <code className="text-orange-600 dark:text-orange-300">"Agentic Skills"</code>,{'\n'}
-            {'  '}status: <code className="text-emerald-600 dark:text-emerald-400 font-bold">true</code>{'\n'}
-            {'}'};
-          </pre>
-        </motion.div>
-        
-      </motion.div>
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+            }}
+            className="text-muted max-w-sm leading-relaxed"
+          >
+            I design and engineer web platforms, dashboards and offline-first mobile apps with
+            React, Vue, Laravel and React Native — from schema to final pixel.
+          </motion.p>
 
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+            }}
+            className="flex items-start gap-3"
+          >
+            <span className="relative mt-1.5 flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-fg opacity-40" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-fg" />
+            </span>
+            <span>
+              Taking on new projects
+              <br />
+              <span className="text-muted">Contract · Remote / Hybrid</span>
+            </span>
+          </motion.div>
+
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
+            }}
+            className="flex items-end gap-8"
+          >
+            <div className="flex flex-col gap-1.5">
+              <a href="#work" className="link font-serif italic text-xl leading-none self-start">See the work</a>
+              <a href="/resume.pdf" download="Giovanni_Guino_Resume.pdf" className="link text-muted self-start">Résumé ↓</a>
+            </div>
+            {/* Scroll cue */}
+            <a href="#about" className="hidden sm:flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted" aria-label="Scroll to About">
+              <span className="[writing-mode:vertical-rl]">Scroll</span>
+              <span className="relative h-12 w-px bg-line overflow-hidden">
+                <span className="scroll-cue absolute inset-x-0 top-0 h-1/2 bg-fg" />
+              </span>
+            </a>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
-

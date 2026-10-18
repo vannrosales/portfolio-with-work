@@ -123,24 +123,25 @@ export default function SnakeGame({ onClose }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-white/80 dark:bg-black/80 backdrop-blur-md"
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-bg/85 backdrop-blur-md"
       >
-        <div className="relative w-full max-w-sm bg-zinc-100 dark:bg-zinc-900 border border-black/10 dark:border-white/10 p-6 rounded-3xl shadow-2xl">
+        <div className="relative w-full max-w-sm bg-bg border border-line p-6 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.4)]">
           
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-start justify-between mb-6">
             <div>
-              <h3 className="font-black tracking-tight text-xl">Vann Snake</h3>
-              <p className="text-xs font-mono opacity-50 uppercase tracking-widest mt-1">Score: {score}</p>
+              <h3 className="font-serif text-3xl leading-none">Vann <em>Snake</em></h3>
+              <p className="text-xs text-muted mt-2 tabular-nums">Score {score}</p>
             </div>
             <div className="flex items-center gap-4">
-              <div className="flex flex-col items-end">
-                <Trophy className="w-4 h-4 text-emerald-500 mb-1" />
-                <span className="text-[10px] font-mono font-bold opacity-70">{highScore}</span>
+              <div className="flex flex-col items-end text-muted">
+                <Trophy className="w-4 h-4 mb-1" />
+                <span className="text-[10px] tabular-nums">{highScore}</span>
               </div>
               <button 
                 onClick={onClose}
-                className="p-2 rounded-full hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                className="p-2 hover:opacity-60 transition-opacity"
+                aria-label="Close game"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -149,7 +150,7 @@ export default function SnakeGame({ onClose }) {
 
           {/* Game Board */}
           <div 
-            className="w-full aspect-square bg-white dark:bg-black border border-black/5 dark:border-white/5 rounded-xl relative overflow-hidden"
+            className="w-full aspect-square border border-line relative overflow-hidden"
             style={{
               display: 'grid',
               gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
@@ -158,7 +159,7 @@ export default function SnakeGame({ onClose }) {
           >
             {/* Food */}
             <div 
-              className="bg-emerald-500 rounded-full w-4/5 h-4/5 place-self-center shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+              className="bg-fg rounded-full w-1/2 h-1/2 place-self-center"
               style={{ gridColumn: food.x + 1, gridRow: food.y + 1 }}
             />
             
@@ -166,27 +167,27 @@ export default function SnakeGame({ onClose }) {
             {snake.map((segment, i) => (
               <div 
                 key={`${segment.x}-${segment.y}-${i}`}
-                className={`w-full h-full ${i === 0 ? 'bg-zinc-800 dark:bg-zinc-200 rounded-sm' : 'bg-zinc-600 dark:bg-zinc-400 rounded-sm opacity-80'}`}
+                className={`w-full h-full bg-fg ${i === 0 ? '' : 'opacity-60 scale-90'}`}
                 style={{ gridColumn: segment.x + 1, gridRow: segment.y + 1 }}
               />
             ))}
             
             {/* Game Over Overlay */}
             {gameOver && (
-              <div className="absolute inset-0 bg-white/80 dark:bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center">
-                <h4 className="text-2xl font-black text-red-500 mb-2">Game Over!</h4>
-                <p className="font-mono text-sm opacity-70 mb-6">Final Score: {score}</p>
+              <div className="absolute inset-0 bg-bg/90 backdrop-blur-sm flex flex-col items-center justify-center">
+                <h4 className="font-serif italic text-4xl mb-2">Game over.</h4>
+                <p className="text-sm text-muted mb-6 tabular-nums">Final score {score}</p>
                 <button 
                   onClick={resetGame}
-                  className="px-6 py-2 bg-black text-white dark:bg-white dark:text-black font-bold text-xs uppercase tracking-widest rounded-full hover:scale-105 transition-transform"
+                  className="link font-serif italic text-xl"
                 >
-                  Play Again
+                  Play again →
                 </button>
               </div>
             )}
           </div>
           
-          <p className="text-[10px] text-center font-mono opacity-40 mt-6 uppercase tracking-widest">
+          <p className="text-[10px] text-center text-muted mt-6 uppercase tracking-[0.2em]">
             Use arrow keys to move
           </p>
         </div>

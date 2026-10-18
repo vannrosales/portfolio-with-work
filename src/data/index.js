@@ -64,7 +64,7 @@ export const projects = [
     image: '/projects/amo-na.png'
   },
   {
-    title: 'EVSU — COE Dean\'s Office System',
+    title: 'COE Dean\'s Office System — EVSU',
     description: 'Internal administrative management tool built to digitize student service requests, meeting records, and college department operations.',
     tags: ['Tailwind CSS', 'Vanilla JS'],
     link: 'https://github.com/vannrosales',

@@ -1,13 +1,22 @@
 import { useState } from 'react';
+import ScrollReveal from '../ScrollReveal';
+import SectionHead from '../SectionHead';
 
 const defaultProps = `{
   "title": "Interactive UI Component",
-  "description": "Try editing this JSON to instantly update the React component on the right!",
-  "theme": "dark",
+  "description": "Try editing this JSON to instantly update the component.",
+  "theme": "ink",
   "status": "Live Editing",
-  "showBorder": true,
-  "rounded": true
+  "italic": true,
+  "rounded": false
 }`;
+
+// theme: "ink" | "paper" | "outline"
+const themes = {
+  ink: 'bg-fg text-bg',
+  paper: 'bg-bg text-fg shadow-[0_30px_60px_-30px_rgba(0,0,0,0.35)]',
+  outline: 'bg-transparent text-fg border border-fg',
+};
 
 export default function Playground() {
   const [code, setCode] = useState(defaultProps);
@@ -21,76 +30,55 @@ export default function Playground() {
       const parsed = JSON.parse(val);
       setProps(parsed);
       setError('');
-    } catch (err) {
-      setError('JSON Syntax Error');
+    } catch {
+      setError('JSON syntax error');
     }
   };
 
   return (
-    <section id="playground" className="mb-32 scroll-mt-32 relative z-10 w-full">
-      <h2 className="text-sm font-bold uppercase tracking-widest opacity-50 mb-12">
-        Live Code Playground
-      </h2>
-      
-      <div className="flex flex-col xl:flex-row gap-6">
-        
-        {/* Code Editor */}
-        <div className="w-full xl:w-1/2 rounded-xl overflow-hidden border border-black/20 dark:border-white/10 shadow-sm bg-zinc-50 dark:bg-zinc-900 font-mono text-sm flex flex-col">
-          <div className="flex items-center justify-between px-4 py-3 bg-black/5 dark:bg-white/5 border-b border-black/20 dark:border-white/10">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-black/20 dark:bg-white/20"></div>
-              <div className="w-3 h-3 rounded-full bg-black/20 dark:bg-white/20"></div>
-              <div className="w-3 h-3 rounded-full bg-black/20 dark:bg-white/20"></div>
-            </div>
-            <div className="text-xs font-bold tracking-widest uppercase opacity-50">
-              props.json
-            </div>
-            <div className="text-[10px] font-bold text-red-500 uppercase tracking-widest w-24 text-right">
-              {error}
-            </div>
+    <section id="playground" className="py-24 sm:py-32 scroll-mt-10">
+      <SectionHead n={9}>Play<em>ground</em></SectionHead>
+
+      <ScrollReveal className="grid lg:grid-cols-2 border-t border-line">
+        {/* Code editor */}
+        <div className="flex flex-col lg:border-r border-line">
+          <div className="flex items-center justify-between py-3 text-xs text-muted border-b border-line lg:pr-6">
+            <span className="font-mono">props.json</span>
+            <span className="text-fg">{error}</span>
           </div>
-          
-          <textarea 
-            value={code} 
+          <textarea
+            value={code}
             onChange={handleCodeChange}
-            className="flex-1 w-full min-h-[250px] bg-transparent p-6 text-black/80 dark:text-white/80 focus:outline-none resize-none leading-relaxed"
+            className="flex-1 w-full min-h-[300px] bg-transparent py-6 lg:pr-6 font-mono text-sm leading-relaxed focus:outline-none resize-none"
             spellCheck="false"
+            aria-label="Component props JSON"
           />
         </div>
 
-        {/* Live Preview Area */}
-        <div className="w-full xl:w-1/2 flex items-center justify-center p-8 rounded-xl border border-black/20 dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.02] min-h-[300px]">
-          
-          {/* Dynamic Component */}
-          <div className={`transition-all duration-500 w-full max-w-sm overflow-hidden
-            ${props?.theme === 'dark' ? 'bg-zinc-900 text-white shadow-2xl' : props?.theme === 'light' ? 'bg-white text-black shadow-xl' : 'bg-emerald-500 text-white shadow-emerald-500/20 shadow-2xl'}
-            ${props?.rounded ? 'rounded-3xl' : 'rounded-none'}
-            ${props?.showBorder ? 'border border-black/20 dark:border-white/20' : 'border-transparent'}
-          `}>
-            <div className="p-8">
-              {props?.status && (
-                <div className="inline-block px-3 py-1 bg-black/10 dark:bg-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
-                  {props.status}
-                </div>
-              )}
-              
-              <h3 className="text-2xl font-black mb-4 leading-tight tracking-tight">
-                {props?.title || 'Untitled Component'}
-              </h3>
-              
-              <p className="opacity-70 text-sm leading-relaxed font-medium">
-                {props?.description || 'No description provided.'}
-              </p>
-            </div>
-            
-            <div className="w-full h-2 bg-black/5 dark:bg-white/10">
-              <div className="h-full bg-current opacity-20 w-1/3 animate-pulse"></div>
+        {/* Live preview */}
+        <div className="flex flex-col">
+          <div className="py-3 text-xs text-muted border-b border-line lg:pl-6">
+            Preview — themes: <span className="font-mono">ink</span>, <span className="font-mono">paper</span>, <span className="font-mono">outline</span>
+          </div>
+          <div className="flex-1 flex items-center justify-center p-8 min-h-[300px]">
+            <div
+              className={`w-full max-w-sm transition-all duration-500 ${themes[props?.theme] || themes.ink} ${props?.rounded ? 'rounded-3xl' : 'rounded-none'}`}
+            >
+              <div className="p-8">
+                {props?.status && (
+                  <p className="text-[10px] uppercase tracking-[0.2em] opacity-60 mb-6">{props.status}</p>
+                )}
+                <h3 className={`font-serif text-4xl leading-tight mb-4 ${props?.italic ? 'italic' : ''}`}>
+                  {props?.title || 'Untitled Component'}
+                </h3>
+                <p className="opacity-70 text-sm leading-relaxed">
+                  {props?.description || 'No description provided.'}
+                </p>
+              </div>
             </div>
           </div>
-          
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }
-

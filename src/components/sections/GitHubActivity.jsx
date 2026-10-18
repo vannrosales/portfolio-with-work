@@ -1,39 +1,46 @@
+import ScrollReveal from '../ScrollReveal';
+import SectionHead from '../SectionHead';
+
 export default function GitHubActivity() {
   return (
-    <section id="github" className="scroll-mt-32 mb-32 relative z-10">
-      <h2 className="text-sm font-bold uppercase tracking-widest opacity-50 mb-12">
-        Open Source & Activity
-      </h2>
-      <div className="p-8 lg:p-12 border border-black/20 dark:border-white/10 rounded-3xl bg-black/5 dark:bg-white/5 relative overflow-hidden flex flex-col lg:flex-row items-center gap-12 group hover:border-black/30 dark:hover:border-white/20 transition-all">
-        <div className="flex-1 space-y-4">
-          <h3 className="text-4xl md:text-5xl font-black tracking-tighter">500+</h3>
-          <h4 className="text-xl font-bold opacity-80">GitHub Contributions</h4>
-          <p className="opacity-60 leading-relaxed max-w-md pt-2 text-sm sm:text-base">
-            Passionate about open-source, continuous learning, and building in public. From experimental personal projects and UI components to full-scale web applications.
+    <section id="github" className="py-24 sm:py-32 scroll-mt-10">
+      <SectionHead n={5}>In the <em>open</em></SectionHead>
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] items-end">
+        <ScrollReveal>
+          <p className="font-serif text-[7rem] sm:text-[10rem] leading-[0.8] tracking-[-0.04em]">
+            500<em>+</em>
           </p>
-          <a 
-            href="https://github.com/vannrosales" 
-            target="_blank" 
+          <p className="font-serif italic text-2xl mt-4">GitHub contributions</p>
+          <p className="text-sm text-muted leading-relaxed max-w-sm mt-4">
+            Passionate about open-source, continuous learning, and building in public — from
+            experimental personal projects and UI components to full-scale web applications.
+          </p>
+          <a
+            href="https://github.com/vannrosales"
+            target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 font-bold uppercase tracking-widest text-xs opacity-80 hover:opacity-100 hover:text-emerald-500 transition-colors mt-4"
+            className="link inline-block mt-6 text-sm"
           >
-            View GitHub Profile
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            View GitHub profile ↗
           </a>
-        </div>
-        
-        <div className="w-full lg:w-auto overflow-hidden pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500">
-          {/* Live GitHub Contribution Graph */}
-          <div className="w-full sm:w-[600px] overflow-hidden rounded-xl border border-black/20 dark:border-white/10 p-4 bg-white/50 dark:bg-black/50 backdrop-blur-sm">
-            <img 
-              src="https://ghchart.rshah.org/10b981/vannrosales" 
-              alt="Giovanni's GitHub Contribution Chart" 
-              className="w-full h-auto dark:invert dark:hue-rotate-180" 
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.15}>
+          <div className="border-t border-line pt-6">
+            {/* Live GitHub contribution graph, tinted to the ink colour */}
+            <img
+              src="https://ghchart.rshah.org/141414/vannrosales"
+              alt="Giovanni's GitHub contribution chart"
+              loading="lazy"
+              className="w-full h-auto mix-blend-multiply dark:mix-blend-normal dark:invert"
             />
+            <p className="mt-3 text-xs text-muted flex justify-between">
+              <span>@vannrosales</span>
+              <span>Last 12 months</span>
+            </p>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
 }
-

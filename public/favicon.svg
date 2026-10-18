@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <!-- Sleek Black Rounded Square -->
-  <rect width="120" height="120" rx="28" fill="#000000"/>
-  
-  <!-- "vnn" Text -->
-  <text 
-    x="50" 
-    y="74" 
-    font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" 
-    font-size="46" 
-    font-weight="900" 
-    fill="#ffffff" 
-    text-anchor="middle" 
-    letter-spacing="-2"
-  >vnn</text>
-  
-  <!-- The ".dev" Emerald Accent Dot -->
-  <circle cx="92" cy="70" r="7" fill="#10b981"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg { fill: #f3f1ec; }
+    .s { stroke: #141414; fill: none; }
+    .f { fill: #141414; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0f0f0e; }
+      .s { stroke: #ecebe6; }
+      .f { fill: #ecebe6; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14" />
+  <g transform="translate(4.9 15.85) scale(0.85)">
+    <g transform="translate(6 0) skewX(-12)" class="s" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 8 L13 32 L21 8 C21 4 33 4 33 10 L33 32 L33 16 C33 4 45 4 45 10 L45 32" />
+    </g>
+    <circle class="f" cx="51" cy="31" r="3.4" />
+  </g>
 </svg>
