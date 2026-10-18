@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar';
 import Content from './components/Content';
-import Chatbot from './components/Chatbot';
 import DevStationBadge from './components/DevStationBadge';
+import NotesLedgerModal from './components/NotesLedgerModal';
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
       <Navbar />
       <Content />
       <DevStationBadge />
-      <Chatbot />
+      <NotesLedgerModal />
     </div>
   );
 }

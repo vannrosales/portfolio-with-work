@@ -1,0 +1,19 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every 3 days to prevent Supabase inactivity pausing
+    - cron: '0 0 */3 * *'
+  workflow_dispatch: # Allows manual click in Actions tab
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase API
+        run: |
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://ntlrovmirmdjnegfliqq.supabase.co/rest/v1/desk_notes?select=count&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}")
+          echo "Supabase health ping completed with status: $STATUS_CODE"
+

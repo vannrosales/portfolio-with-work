@@ -6,7 +6,7 @@ export default function DevStationBadge({ className = '' }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="View my portfolio on DEV/STATION"
-      className={`fixed right-0 top-1/2 -translate-y-1/2 z-40 flex min-h-11 min-w-11 items-center justify-end print:hidden transition-transform duration-300 hover:-translate-x-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${className}`}
+      className={`fixed right-0 top-[58%] -translate-y-1/2 z-40 flex min-h-11 min-w-11 items-center justify-end print:hidden transition-transform duration-300 hover:-translate-x-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${className}`}
     >
       <img
         src="https://www.dev-station.dev/badge-vertical.svg"

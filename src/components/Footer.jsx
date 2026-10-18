@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LogoMark } from './Logo';
 import SnakeGame from './SnakeGame';
+import VisitorStats from './VisitorStats';
 
 export default function Footer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -21,8 +22,9 @@ export default function Footer() {
           <a href="#" className="link">Back to top ↑</a>
         </div>
       </div>
-      <div className="mt-8 flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">
+      <div className="mt-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-muted">
         <span>© {new Date().getFullYear()} Giovanni Hanz Guino</span>
+        <VisitorStats />
       </div>
 
       {isPlaying && <SnakeGame onClose={() => setIsPlaying(false)} />}
