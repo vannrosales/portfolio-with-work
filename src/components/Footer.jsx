@@ -23,7 +23,6 @@ export default function Footer() {
       </div>
       <div className="mt-8 flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">
         <span>© {new Date().getFullYear()} Giovanni Hanz Guino</span>
-        <span>Designed &amp; built with care in the Philippines.</span>
       </div>
 
       {isPlaying && <SnakeGame onClose={() => setIsPlaying(false)} />}
