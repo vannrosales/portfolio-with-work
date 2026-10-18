@@ -69,26 +69,42 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 bg-bg sm:hidden flex flex-col justify-end px-6 pb-16"
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-bg sm:hidden flex flex-col justify-between px-6 pt-5 pb-12"
           >
-            <nav className="flex flex-col gap-1">
+            <div className="flex items-center justify-between h-11 border-b border-line pb-4">
+              <Logo onClick={close} />
+              <button
+                onClick={close}
+                className="link text-sm uppercase tracking-wider px-2 py-1"
+                aria-label="Close menu"
+              >
+                Close ✕
+              </button>
+            </div>
+
+            <nav className="flex flex-col gap-3 my-auto py-8">
               {navLinks.map((l, i) => (
                 <motion.a
                   key={l.href}
                   href={l.href}
                   onClick={close}
-                  initial={{ y: 30, opacity: 0 }}
+                  initial={{ y: 24, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 20, opacity: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-serif text-6xl leading-tight hover:italic"
+                  exit={{ y: 16, opacity: 0 }}
+                  transition={{ duration: 0.4, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-serif text-5xl sm:text-6xl leading-tight hover:italic active:scale-95 transition-transform origin-left"
                 >
                   <span className="font-sans text-xs text-muted align-top mr-3 tabular-nums">0{i + 1}</span>
                   {l.label}
                 </motion.a>
               ))}
             </nav>
+
+            <div className="flex items-center justify-between pt-4 border-t border-line text-xs text-muted">
+              <span>Tacloban City, PH</span>
+              <span className="tabular-nums">{time}</span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

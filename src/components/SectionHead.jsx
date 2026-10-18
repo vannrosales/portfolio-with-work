@@ -9,7 +9,7 @@ export default function SectionHead({ n, children }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
-      className="relative pt-6 mb-14 sm:mb-20"
+      className="relative pt-4 sm:pt-6 mb-8 sm:mb-16"
     >
       {/* Hairline that draws itself from left to right */}
       <motion.span

@@ -144,12 +144,15 @@ export const experiences = [
   },
   {
     company: 'Eastern Visayas State University',
-    role: 'Lead Full-Stack Developer',
+    role: 'Lead Full-Stack Architect — iESMS',
     date: '2023 — 2024',
-    type: 'Capstone • Onsite',
+    type: 'Capstone Project • Onsite',
     initials: 'EV',
-    descriptions: [],
-    tags: []
+    descriptions: [
+      'Architected and engineered the Integrated Extension Services Management System (iESMS) to centralize participant tracking and university-wide extension services across all campuses.',
+      'Designed the relational database schema, administrative analytics reports, and role-based access control for institutional oversight.'
+    ],
+    tags: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript', 'Data Analytics', 'RBAC']
   }
 ];
 

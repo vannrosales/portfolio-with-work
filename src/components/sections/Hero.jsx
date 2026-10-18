@@ -48,11 +48,11 @@ function RotatingWord() {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100svh] flex flex-col pt-24 sm:pt-28 pb-10">
+    <section className="relative min-h-[100svh] flex flex-col justify-between pt-20 sm:pt-28 pb-8 sm:pb-12">
 
       {/* Headline */}
-      <div className="flex-1 flex flex-col justify-center py-14">
-        <h1 className="font-serif text-[10.5vw] sm:text-[9.5vw] xl:text-[8.25rem] leading-[0.95] tracking-[-0.03em]">
+      <div className="flex-1 flex flex-col justify-center py-8 sm:py-14">
+        <h1 className="font-serif text-[clamp(3.15rem,13vw,9.5rem)] leading-[0.94] tracking-[-0.035em] break-words">
           <Line delay={0.15}>
             Giovanni{' '}
             {/* Avatar set inline with the type, like a word in the sentence */}
@@ -61,7 +61,7 @@ export default function Hero() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.45, ease }}
               whileHover={{ scale: 1.08, rotate: -3 }}
-              className="group relative inline-block align-middle h-[0.80em] w-[1.10em] -mt-[0.12em] rounded-full overflow-hidden bg-line cursor-pointer"
+              className="group relative inline-block align-middle h-[0.78em] w-[1.12em] -mt-[0.10em] rounded-full overflow-hidden bg-line cursor-pointer shrink-0"
             >
               <img
                 src={pixelPic}
@@ -95,7 +95,7 @@ export default function Hero() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.12, delayChildren: 0.75 } },
           }}
-          className="grid gap-8 sm:grid-cols-[1.2fr_1fr_auto] items-end"
+          className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-[1.2fr_1fr_auto] items-start sm:items-end"
         >
           <motion.p
             variants={{
