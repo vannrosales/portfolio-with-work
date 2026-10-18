@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1];
 
 function Line({ children, delay }) {
   return (
-    <span className="block overflow-hidden pb-[0.08em]">
+    <span className="block overflow-hidden pt-[0.04em] pb-[0.04em]">
       <motion.span
         initial={{ y: '110%' }}
         animate={{ y: '0%' }}
@@ -110,7 +110,7 @@ function RotatingWord() {
   }, []);
 
   return (
-    <span className="inline-grid overflow-hidden align-bottom pb-[0.06em]" aria-live="polite">
+    <span className="inline-grid overflow-hidden align-baseline" aria-live="polite">
       <AnimatePresence mode="wait" initial={false}>
         <motion.em
           key={words[i]}
@@ -118,7 +118,7 @@ function RotatingWord() {
           animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
           exit={{ y: '-95%', opacity: 0, filter: 'blur(4px)' }}
           transition={{ duration: 0.55, ease }}
-          className="inline-block"
+          className="col-start-1 row-start-1 not-italic font-serif italic text-fg pl-[0.2em]"
         >
           {words[i]}
         </motion.em>
@@ -139,7 +139,7 @@ export default function Hero() {
           </Line>
           <Line delay={0.27}>considered software</Line>
           <Line delay={0.39}>
-            <span className="text-muted">that feels</span> <RotatingWord />
+            <span className="text-muted">that feels</span><RotatingWord />
           </Line>
         </h1>
       </div>
