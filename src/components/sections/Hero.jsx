@@ -142,6 +142,25 @@ export default function Hero() {
             <span className="text-muted">that feels</span><RotatingWord />
           </Line>
         </h1>
+
+        {/* App Builders PH Featured Vote Embed */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.55, ease }}
+          className="mt-8 sm:mt-10 self-start"
+        >
+          <iframe
+            src="https://appbuildersph.com/embed/apps/wstrip-free-online-photobooth"
+            title="wStrip - Free Online PhotoBooth votes on App Builders PH"
+            width="320"
+            height="72"
+            style={{ border: 0 }}
+            loading="lazy"
+            scrolling="no"
+            className="max-w-full rounded-xl overflow-hidden"
+          />
+        </motion.div>
       </div>
 
       {/* Footer row of the cover */}
