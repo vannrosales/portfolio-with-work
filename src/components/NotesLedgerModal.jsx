@@ -141,6 +141,15 @@ export default function NotesLedgerModal() {
   const [activeBoard, setActiveBoard] = useState(null); // null | 'messages' | 'wishes'
   const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
   const [isBirthdayWish, setIsBirthdayWish] = useState(false);
+  const [isBirthdayActive, setIsBirthdayActive] = useState(() => {
+    if (typeof window !== 'undefined') {
+      if (new URLSearchParams(window.location.search).get('birthday') === 'true') {
+        return true;
+      }
+    }
+    const now = new Date();
+    return now.getMonth() === 10 && now.getDate() === 8;
+  });
   const [notes, setNotes] = useState([]);
   const [wishes, setWishes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -152,11 +161,19 @@ export default function NotesLedgerModal() {
 
   useEffect(() => {
     const handleOpenBirthdayWish = () => {
+      setIsBirthdayActive(true);
       setIsBirthdayWish(true);
       setIsNoteModalOpen(true);
     };
+    const handlePreviewBirthday = () => {
+      setIsBirthdayActive(true);
+    };
     window.addEventListener('open-birthday-wish', handleOpenBirthdayWish);
-    return () => window.removeEventListener('open-birthday-wish', handleOpenBirthdayWish);
+    window.addEventListener('preview-birthday', handlePreviewBirthday);
+    return () => {
+      window.removeEventListener('open-birthday-wish', handleOpenBirthdayWish);
+      window.removeEventListener('preview-birthday', handlePreviewBirthday);
+    };
   }, []);
 
   useEffect(() => {
@@ -262,34 +279,36 @@ export default function NotesLedgerModal() {
 
   return (
     <>
-      {/* Right-Edge Birthday Wishes Tab */}
-      <motion.button
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.5, ease }}
-        onClick={() => setActiveBoard('wishes')}
-        className="fixed right-0 top-[23%] -translate-y-1/2 z-40 group flex flex-col items-center py-2.5 px-2 rounded-l-2xl border-y border-l border-line bg-bg/95 backdrop-blur-md text-fg shadow-[0_10px_30px_-5px_rgba(0,0,0,0.16)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] hover:-translate-x-1 transition-all duration-300 cursor-pointer select-none"
-        aria-label="Open Birthday Wishes"
-      >
-        <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-fg/[0.04] dark:bg-fg/[0.08] border border-line group-hover:border-fg/40 transition-all">
-          <Cake
-            className="w-4 h-4 text-fg transition-transform duration-300 group-hover:scale-110"
-            aria-hidden="true"
-          />
+      {/* Right-Edge Birthday Wishes Tab (Only appears on your birthday, Nov 8) */}
+      {isBirthdayActive && (
+        <motion.button
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease }}
+          onClick={() => setActiveBoard('wishes')}
+          className="fixed right-0 top-[23%] -translate-y-1/2 z-40 group flex flex-col items-center py-2.5 px-2 rounded-l-2xl border-y border-l border-line bg-bg/95 backdrop-blur-md text-fg shadow-[0_10px_30px_-5px_rgba(0,0,0,0.16)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] hover:-translate-x-1 transition-all duration-300 cursor-pointer select-none"
+          aria-label="Open Birthday Wishes"
+        >
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-fg/[0.04] dark:bg-fg/[0.08] border border-line group-hover:border-fg/40 transition-all">
+            <Cake
+              className="w-4 h-4 text-fg transition-transform duration-300 group-hover:scale-110"
+              aria-hidden="true"
+            />
 
-          {wishes.length > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-fg text-bg font-mono text-[9px] font-bold ring-2 ring-bg">
-              {wishes.length > 99 ? '99+' : wishes.length}
-            </span>
-          )}
-        </div>
+            {wishes.length > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-fg text-bg font-mono text-[9px] font-bold ring-2 ring-bg">
+                {wishes.length > 99 ? '99+' : wishes.length}
+              </span>
+            )}
+          </div>
 
-        <div className="w-4 my-2 border-t border-dashed border-line" />
+          <div className="w-4 my-2 border-t border-dashed border-line" />
 
-        <span className="[writing-mode:vertical-rl] rotate-180 font-mono text-[9px] uppercase tracking-[0.24em] font-medium text-fg/80 group-hover:text-fg transition-colors">
-          WISHES
-        </span>
-      </motion.button>
+          <span className="[writing-mode:vertical-rl] rotate-180 font-mono text-[9px] uppercase tracking-[0.24em] font-medium text-fg/80 group-hover:text-fg transition-colors">
+            WISHES
+          </span>
+        </motion.button>
+      )}
 
       {/* Right-Edge Messages Tab */}
       <motion.button

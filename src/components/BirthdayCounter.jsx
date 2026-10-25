@@ -142,7 +142,10 @@ export default function BirthdayCounter() {
 
       {/* Right Mystery Box */}
       <div
-        onDoubleClick={() => setPreviewBirthday(true)}
+        onDoubleClick={() => {
+          setPreviewBirthday(true);
+          window.dispatchEvent(new CustomEvent('preview-birthday'));
+        }}
         title="Double-click to preview birthday mode"
         className="h-11 min-w-[54px] px-2.5 rounded-xl border border-line bg-fg/[0.04] flex flex-col items-center justify-center leading-tight shrink-0 cursor-pointer"
       >
