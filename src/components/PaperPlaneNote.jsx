@@ -6,7 +6,7 @@ const ease = [0.16, 1, 0.3, 1];
 const COOLDOWN_SECONDS = 60;
 const MAX_HOURLY_POSTS = 4;
 
-export default function PaperPlaneNote({ onSent, onClose }) {
+export default function PaperPlaneNote({ onSent, onClose, isBirthdayWish = false }) {
   const [note, setNote] = useState('');
   const [status, setStatus] = useState('idle'); // 'idle' | 'folding' | 'flying' | 'sent'
   const [honeypot, setHoneypot] = useState(''); // Hidden trap for automated bots
@@ -107,34 +107,46 @@ export default function PaperPlaneNote({ onSent, onClose }) {
   };
 
   const saveNote = async (text) => {
-    const newNote = {
-      message: text,
-      created_at: new Date().toISOString(),
-    };
+    const createdAt = new Date().toISOString();
+    const storageKey = isBirthdayWish ? 'vnn_birthday_wishes' : 'vnn_desk_notes';
+    const dbMessage = isBirthdayWish ? `[WISH] ${text}` : text;
+
+    // Always persist locally so wishes/notes work even if Supabase is paused
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      saved.push({ id: `local-${Date.now()}`, message: text, date: createdAt });
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    } catch {
+      // Ignore storage quota errors
+    }
 
     try {
       if (isSupabaseConfigured && supabase) {
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('desk_notes')
-          .insert([newNote])
-          .select()
-          .single();
+          .insert([{ message: dbMessage, created_at: createdAt }]);
 
-        if (!error && data && onSent) {
-          onSent(data);
+        if (!error && onSent) {
+          onSent({
+            id: `db-${Date.now()}`,
+            message: text,
+            created_at: createdAt,
+            isBirthdayWish,
+          });
           return;
         }
       }
-      const saved = JSON.parse(localStorage.getItem('vnn_desk_notes') || '[]');
-      saved.push({ message: newNote.message, date: newNote.created_at });
-      localStorage.setItem('vnn_desk_notes', JSON.stringify(saved));
-      if (onSent) {
-        onSent({ id: `local-${Date.now()}`, ...newNote });
-      }
     } catch {
-      if (onSent) {
-        onSent({ id: `local-${Date.now()}`, ...newNote });
-      }
+      // Fallback to local item below when Supabase is paused
+    }
+
+    if (onSent) {
+      onSent({
+        id: `local-${Date.now()}`,
+        message: text,
+        created_at: createdAt,
+        isBirthdayWish,
+      });
     }
   };
 
@@ -212,7 +224,9 @@ export default function PaperPlaneNote({ onSent, onClose }) {
 
         {/* Paper Header */}
         <div className="relative z-10 flex items-baseline justify-between border-b border-line pb-3 mb-5 pl-3">
-          <span className="font-serif italic text-xl text-fg">Leave a note</span>
+          <span className="font-serif italic text-xl text-fg">
+            {isBirthdayWish ? 'Send a birthday wish' : 'Leave a note'}
+          </span>
 
           {onClose && (
             <button
@@ -259,6 +273,8 @@ export default function PaperPlaneNote({ onSent, onClose }) {
                   placeholder={
                     cooldownRemaining > 0
                       ? `Cooldown active (${cooldownRemaining}s)…`
+                      : isBirthdayWish
+                      ? 'Happy birthday, Giovanni! Wishing you…'
                       : 'Write your message here…'
                   }
                   rows={4}

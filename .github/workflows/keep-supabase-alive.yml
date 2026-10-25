@@ -2,18 +2,30 @@ name: Keep Supabase Active
 
 on:
   schedule:
-    # Runs at 00:00 UTC every 3 days to prevent Supabase inactivity pausing
-    - cron: '0 0 */3 * *'
-  workflow_dispatch: # Allows manual click in Actions tab
+    # Runs every 12 hours to guarantee continuous Postgres database activity
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
 
 jobs:
   ping-supabase:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase API
+      - name: Query Supabase Postgres Database
+        env:
+          SECRET_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://ntlrovmirmdjnegfliqq.supabase.co/rest/v1/desk_notes?select=count&limit=1" \
-            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}")
-          echo "Supabase health ping completed with status: $STATUS_CODE"
-
+          ANON_KEY="${SECRET_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50bHJvdm1pcm1kam5lZ2ZsaXFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIzMjczMjIsImV4cCI6MjEwNzkwMzMyMn0.iVG1DJTh-H_cZTR5xRvsE0DMw196_LZzWZo6AxYMUmI}"
+          
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X GET "https://ntlrovmirmdjnegfliqq.supabase.co/rest/v1/desk_notes?select=id&limit=1" \
+            -H "apikey: $ANON_KEY" \
+            -H "Authorization: Bearer $ANON_KEY")
+          
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          
+          echo "Supabase response ($HTTP_STATUS): $BODY"
+          
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+            echo "Ping failed with status $HTTP_STATUS (Project may need to be unpaused in Supabase dashboard first)"
+            exit 1
+          fi

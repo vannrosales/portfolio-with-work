@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import pixelPic from '../../assets/avatar.png';
 import pixelPicBlink from '../../assets/avatar-blink.png';
+import BirthdayCounter from '../BirthdayCounter';
 
 const words = ['quiet.', 'reliable.', 'human.', 'timeless.'];
 const ease = [0.16, 1, 0.3, 1];
@@ -143,12 +144,12 @@ export default function Hero() {
           </Line>
         </h1>
 
-        {/* App Builders PH Featured Vote Embed */}
+        {/* App Builders PH Featured Vote Embed + Birthday Counter */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.55, ease }}
-          className="mt-8 sm:mt-10 self-start"
+          className="mt-8 sm:mt-10 self-start flex flex-wrap items-center gap-4"
         >
           <iframe
             src="https://appbuildersph.com/embed/apps/wstrip-free-online-photobooth"
@@ -160,6 +161,8 @@ export default function Hero() {
             scrolling="no"
             className="max-w-full rounded-xl overflow-hidden"
           />
+
+          <BirthdayCounter />
         </motion.div>
       </div>
 
