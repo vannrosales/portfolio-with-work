@@ -1,8 +1,8 @@
 export const services = [
   {
-    title: 'Full-Stack Development',
-    description: 'Bespoke web applications, administrative dashboards, and API services built with Laravel, Vue 3, or React.',
-    tags: ['React', 'Vue 3', 'Laravel', 'API Services'],
+    title: 'AI-Driven Engineering',
+    description: 'Spec-driven (SDD) and test-driven (TDD) web applications, administrative dashboards, and API services built with React, Vue 3, and Laravel.',
+    tags: ['AI-Driven Dev', 'SDD / TDD', 'React', 'Vue 3', 'Laravel'],
     link: '#',
     year: 'Service'
   },
@@ -14,9 +14,9 @@ export const services = [
     year: 'Service'
   },
   {
-    title: 'Systems & Optimization',
-    description: 'Database modeling, Database setup, and local development infrastructure.',
-    tags: ['Database Modeling', 'Supabase', 'Database Optimization', 'MySQL' , 'PostgreSQL'],
+    title: 'Systems & Architecture',
+    description: 'Database modeling, automated testing pipelines, Supabase/PostgreSQL architecture, and scalable deployment infrastructure.',
+    tags: ['SDD / TDD', 'Database Modeling', 'Supabase', 'MySQL', 'PostgreSQL'],
     link: '#',
     year: 'Service'
   }
@@ -120,15 +120,15 @@ export const experiences = [
   // },
   {
     company: 'Independent / Freelance',
-    role: 'Full-Stack Developer & IT Specialist',
+    role: 'Software Engineer',
     date: 'OCT 2025 — PRESENT',
     type: 'Contract • Remote / Hybrid',
     initials: 'VN',
     descriptions: [
-      'Architecting and deploying customized web and mobile applications utilizing Vue 3, React Native, Laravel, and Supabase.',
-      'Configuring developer tooling, database migrations, authentication policies, and automated deployment pipelines.'
+      'Architecting and shipping web and mobile applications through AI-driven development, Spec-Driven Development (SDD), and Test-Driven Development (TDD) with React, Vue 3, React Native, Laravel, and Supabase.',
+      'Designing database migrations, authentication policies, automated tests, and continuous deployment pipelines.'
     ],
-    tags: ['Laravel', 'Vue.js 3', 'React Native', 'Supabase', 'Tailwind CSS', 'TypeScript']
+    tags: ['AI-Driven Dev', 'SDD / TDD', 'Laravel', 'Vue.js 3', 'React Native', 'Supabase', 'TypeScript']
   },
   {
     company: 'EVSU — College of Engineering',

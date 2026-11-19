@@ -192,8 +192,8 @@ export default function Hero() {
             }}
             className="text-muted max-w-sm leading-relaxed"
           >
-            I design and engineer web platforms, dashboards and offline-first mobile apps with
-            React, Vue, Laravel and React Native — from schema to final pixel.
+            Software Engineer specializing in AI-driven development and SDD/TDD — building
+            resilient web platforms, dashboards, and offline-first mobile apps from spec to production.
           </motion.p>
 
           <motion.div

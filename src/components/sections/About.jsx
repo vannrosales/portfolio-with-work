@@ -7,9 +7,9 @@ import SectionHead from '../SectionHead';
 const ease = [0.16, 1, 0.3, 1];
 
 const dossier = [
-  { label: 'Discipline', value: 'Full-Stack Web Developer & AI Agentic' },
+  { label: 'Discipline', value: 'Software Engineer' },
+  { label: 'Methodology', value: 'AI-Driven Development · SDD / TDD' },
   { label: 'Education', value: 'Eastern Visayas State University — COE' },
-  { label: 'Focus', value: 'Web Apps, Offline-First Mobile, Systems' },
   { label: 'Location', value: 'Tacloban City, Philippines (UTC+8)' },
 ];
 
@@ -36,7 +36,7 @@ export default function About() {
 
           <ScrollReveal delay={0.18}>
             <p className="text-muted leading-relaxed text-sm sm:text-base lg:text-lg max-w-xl">
-              Full-stack &amp; mobile developer focused on responsive web systems and offline-first apps.
+              Software Engineer focused on AI-driven development, Spec-Driven &amp; Test-Driven Development (SDD/TDD), responsive web systems, and offline-first mobile apps.
               Outside the editor, I tune workstations, explore UI patterns, and compete in tactical esports.
             </p>
           </ScrollReveal>
