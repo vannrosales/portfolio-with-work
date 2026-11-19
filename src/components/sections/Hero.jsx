@@ -190,10 +190,18 @@ export default function Hero() {
               hidden: { opacity: 0, y: 14 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease } },
             }}
-            className="text-muted max-w-sm leading-relaxed"
+            className="text-muted max-w-md text-[15px] sm:text-base leading-relaxed"
           >
-            Software Engineer specializing in AI-driven development and SDD/TDD — building
-            resilient web platforms, dashboards, and offline-first mobile apps from spec to production.
+            <span className="text-fg font-medium">Software Engineer</span> specializing in{' '}
+            <span className="inline-block px-1.5 py-0.5 rounded-md border border-line bg-fg/[0.06] text-fg font-mono text-xs">
+              AI-driven development
+            </span>{' '}
+            and{' '}
+            <span className="inline-block px-1.5 py-0.5 rounded-md border border-line bg-fg/[0.06] text-fg font-mono text-xs">
+              SDD/TDD
+            </span>{' '}
+            — building resilient web platforms, dashboards, and offline-first mobile apps{' '}
+            <em className="font-serif italic text-fg text-lg sm:text-xl">from spec to production.</em>
           </motion.p>
 
           <motion.div
